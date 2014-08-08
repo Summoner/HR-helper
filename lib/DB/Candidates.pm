@@ -5,7 +5,7 @@ use Data::Dumper;
 
 #Class - repozitory for storing Candidates
 package lib::DB::Candidates;
-use lib::Portal::Candidat;
+use lib::Entities::Candidat;
 #Constructor
 sub new{	
 	my  $class = shift;
@@ -20,7 +20,7 @@ sub add_candidat{
 	my $self = shift;
 	my $id = shift;
 	#print "11111",Dumper \@_;
-	my $candidat = lib::Portal::Candidat->new(@_);
+	my $candidat = lib::Entities::Candidat->new(@_);
 	$candidates->{$id} = $candidat;
 #	return $candidates;
 }

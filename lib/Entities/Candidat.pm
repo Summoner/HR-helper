@@ -1,10 +1,9 @@
 #!/usr/bin/perl -w
 #Class for storing data about Candidate
-package Portal::Candidat;
+package lib::Entities::Candidat;
 
 use strict;
 use warnings;
-use base Portal;
 use Data::Dumper; 
 
 #Constructor
