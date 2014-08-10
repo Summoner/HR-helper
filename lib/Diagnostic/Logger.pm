@@ -19,12 +19,12 @@ sub new{
 sub write_to_log{
 
 	my($self,$message) = @_;
-	my $dt3 = DateTime->today(time_zone=>'local');
-	open my $logfile,"> /home/fanatic/Summoner/HR-helper/Diagnostic/log.txt" || die "Can not open file $!\n";
-	
-	my $messageForWrite = $message . $dt3 . "\n";
-
-	print $logfile $message;
+	my $dt3 = DateTime->now(time_zone=>'local');
+	#print $dt3;
+	my $messageForWrite = $dt3 ." " . $message  . "\n";
+	open my $logfile,">> /home/fanatic/Summoner/HR-helper/lib/Diagnostic/log.txt" || die "Can not open file $!\n";
+	print $logfile $messageForWrite;
+	close $logfile;
 }
 
 1;

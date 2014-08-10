@@ -3,9 +3,9 @@ use strict;
 use warnings;
 use Data::Dumper; 
 
-package Test;
+package Tests::Test;
 #Test here
-use lib::Portal;
+use lib::Portal::CandidatesPortal;
 
 my %candidat1 = (
 	forename => "Andrey",
@@ -38,7 +38,7 @@ my %candidat2 = (
 	education => "IT university Harkov 2004 year"
 );
 
-my $p = lib::Portal->new();
+my $p = lib::Portal::CandidatesPortal->new();
 $p->add_candidat(1,%candidat1);
 my $candidat = $p->get_candidat_by_id(1);
 print $candidat->{surname};
