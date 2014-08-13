@@ -8,9 +8,10 @@ sub new {
 
 sub create_candidate {
    my ($self, $cand_input) = @_;
-   # push this ti database
    
    my $cand = HRHelper::Entity::CandidateEntity->new($cand_input);
+
+   $self->create($cand);
 
    return $cand;
 }
