@@ -1,13 +1,11 @@
-#!/usr/bin/perl -w
+package lib::Portal::CandidatesPortal;
 use strict;
 use warnings;
 use Data::Dumper; 
-
-#Class - portal for access objects
-package lib::Portal::CandidatesPortal;
 use lib::DB::Candidates;
 use lib::Diagnostic::Logger;
 use base 'lib::Portal';
+
 #Constructor
 sub new {
     my $class = shift;
@@ -19,11 +17,9 @@ sub new {
   sub add_candidat{
 
 	my $self = shift;	
+	my $candidat = lib::Entities::Candidat->new(@_);
 	my $candidates = lib::DB::Candidates->new();
-	$candidates->add_candidat(@_);
-	my $log = lib::Diagnostic::Logger->new();
-	$log->write_to_log("Added candidat");
-	
+	$candidates->add_candidat($candidat);
 }
 
 sub get_candidat_by_id{
@@ -35,11 +31,21 @@ sub get_candidat_by_id{
 	return $candidat
 }
 
+sub update_candidat_by_id{
+
+	my $self = shift;
+	my $id = shift;	
+	my $candidates = lib::DB::Candidates->new();
+	my $candidat = lib::Entities::Candidat->new(@_);
+	$candidates->update_candidat_by_id($id,$candidat);
+}
+
+
 sub delete_candidat_by_id{
 
 	my $self = shift;	
 	my $id = shift;
-	my $candidates = Candidates->new();
+	my $candidates = lib::DB::Candidates->new();
 	$candidates->delete_candidat_by_id($id);
 }
 
