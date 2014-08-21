@@ -1,0 +1,2 @@
+2014-08-21 21:13:38 Please enter only letters with length from 3 to 10 for surname
+2014-08-21 21:14:00 Please enter only letters with length from 3 to 10 for surname, Please enter only letters with length from 3 to 10 for forename

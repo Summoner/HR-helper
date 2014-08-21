@@ -18,8 +18,10 @@ sub new {
 
 	my $self = shift;	
 	my $candidat = lib::Entities::Candidat->new(@_);
-	my $candidates = lib::DB::Candidates->new();
-	$candidates->add_candidat($candidat);
+	if (defined $candidat){
+		my $candidates = lib::DB::Candidates->new();
+		$candidates->add_candidat($candidat);
+	}
 }
 
 sub get_candidat_by_id{
@@ -52,7 +54,8 @@ sub delete_candidat_by_id{
 sub get_candidates_list{
 
 	my $self = shift;	
-	my $candidates = Candidates->new();
+	my $candidates = lib::DB::Candidates->new();
 	my $candidates_list = $candidates->get_candidates_list();
+	return $candidates_list;
 }
 1;

@@ -1,22 +1,47 @@
-#!/usr/bin/perl -w
 #Class for storing data about Candidate
 package lib::Entities::Candidat;
-
 use strict;
 use warnings;
 use Data::Dumper; 
-
+use lib::Entities::CandidatValidation;
+use lib::Diagnostic::Logger;
 #Constructor
+my $log = lib::Diagnostic::Logger->new();
 sub new{	
 	my  $class = shift;
-    #print "2222",Dumper \@_;
-	my $self = {@_};
+    my $self = {};
+	my %params = @_;
 	bless($self,$class);
+
+	#Validate input parametres
+	my $input = lib::Entities::CandidatValidation->new(\%params);
+
+    unless ($input->validate('forename','surname')){
+		
+		$log->write_to_candidate_log($input->errors_to_string);
+
+		$self = undef;
+
+	}else{
+			# initialize all attributes by passing arguments to accessor methods.
+    		foreach my $attrib ( keys %params ) { 
+       
+            			unless ($self->can( $attrib )){			
+			   
+		       					$log->write_to_candidate_log("Invalid parameter '$attrib' passed to '$class' constructor");
+						}
+        				$self->$attrib( $params{$attrib} );
+
+			}   
+	} 
 	return $self;
 }
 
 #Object accessor methods
 sub forename{$_[0]->{forename} = $_[1] if defined $_[1]; $_[0]->{forename} }
+
+sub id{$_[0]->{id} = $_[1] if defined $_[1]; $_[0]->{id} }
+
 sub surname{$_[0]->{surname} = $_[1] if defined $_[1]; $_[0]->{surname} }
 sub age{$_[0]->{age} = $_[1] if defined $_[1]; $_[0]->{age} }
 sub citizenship{$_[0]->{citizenship} = $_[1] if defined $_[1]; $_[0]->{citizenship} }
