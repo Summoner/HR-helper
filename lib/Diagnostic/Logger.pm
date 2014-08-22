@@ -33,5 +33,16 @@ sub write_to_interwiever_log{
 	print $logfile $messageForWrite;
 	close $logfile;
 }
+sub write_to_hrmanager_log{
+
+	my($self,$message) = @_;
+	my $dt3 = DateTime->now(time_zone=>'local');
+	$dt3 = join (" ", split (/T/,$dt3));
+	my $messageForWrite = $dt3 ." " . $message  . "\n";
+	open my $logfile,">> /home/fanatic/Summoner/HR-helper/lib/Diagnostic/HRManagerLog.txt" || die "Can not open file $!\n";
+
+	print $logfile $messageForWrite;
+	close $logfile;
+}
 1;
 

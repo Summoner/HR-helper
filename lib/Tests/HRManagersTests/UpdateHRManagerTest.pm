@@ -1,26 +1,24 @@
-package lib::Tests::CandidatesTests::Test;
+package package lib::Tests::CandidatesTests::UpdateCandidatTest;
 use strict;
 use warnings;
 use Data::Dumper; 
-
-
 #Test here
 use lib::Portal::CandidatesPortal;
 
 my %candidat1 = (
-	forename => "Andrey",
+	forename => "Alex",
 	surname => "Tur",
 	age => "33",
 	citizenship => "Belarus",
 	marital_status => "Married",
 	children => "1",
-	phone_number => "375297559177",
+	phone_number => "+375297559155",
 	email => "andrtur\@gmail.com",
 	position_apply => "Software developer",
 	expertise_areas => "Perl,Git,SQL,C#",
 	prof_exp => "7 years",
 	foreign_lang => "English,Russian",
-	education => "IT university Minsk 2004 year"	
+	education => "IT university Minsk 2004 year"
 );
 my %candidat2 = (
 	forename => "Alexander",
@@ -39,8 +37,7 @@ my %candidat2 = (
 );
 
 my $p = lib::Portal::CandidatesPortal->new();
-$p->add_candidat(%candidat1);
-#$p->add_candidat(%candidat2);
+$p->update_candidat_by_id(4,%candidat1);
 #my $candidat = $p->get_candidat_by_id(1);
 #print $candidat->{surname};
 

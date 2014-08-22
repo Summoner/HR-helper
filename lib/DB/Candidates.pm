@@ -14,8 +14,6 @@ my $dsn = "DBI:$driver:database=$database";
 my $userid = "HR";
 my $password = "1";
 
-my $candidates = {};
-
 #Constructor
 sub new{	
 	my  $class = shift;
@@ -61,7 +59,7 @@ sub add_candidat{
 					$candidat->{education}
 	) or die $DBI::errstr;
 	my $log = lib::Diagnostic::Logger->new();
-	$log->write_to_candidate_log("Added 1 candidat\n");
+	$log->write_to_candidate_log("Added 1 candidat");
 	$sth->finish();
 
 }
@@ -91,7 +89,7 @@ sub get_candidat_by_id{
 	if ($sth->rows >1 || $sth->rows == 0){
 
 		my $log = lib::Diagnostic::Logger->new();
-		$log->write_to_candidate_log("We have " . $sth->rows . " candidates with id: $id\n");
+		$log->write_to_candidate_log("We have " . $sth->rows . " candidates with id: $id");
 		return;
 	}
 	
@@ -150,7 +148,7 @@ $sth->execute($candidat->{forename},
 			$id ) or die $DBI::errstr;
 
 		my $log = lib::Diagnostic::Logger->new();
-		$log->write_to_candidate_log("We have " . $sth->rows . " candidates updated with id: $id\n");
+		$log->write_to_candidate_log("We have " . $sth->rows . " candidates updated with id: $id");
 		$sth->finish();
 }
 sub delete_candidat_by_id{
@@ -162,7 +160,7 @@ sub delete_candidat_by_id{
                         WHERE id = ?");
 	$sth->execute( $id ) or die $DBI::errstr;
 	my $log = lib::Diagnostic::Logger->new();
-	$log->write_to_candidate_log("Deleted: " . $sth->rows . " candidates with id: $id\n");
+	$log->write_to_candidate_log("Deleted: " . $sth->rows . " candidates with id: $id");
 	$sth->finish();
 }
 

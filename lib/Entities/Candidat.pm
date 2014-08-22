@@ -3,7 +3,7 @@ package lib::Entities::Candidat;
 use strict;
 use warnings;
 use Data::Dumper; 
-use lib::Entities::CandidatValidation;
+use lib::Entities::Validation;
 use lib::Diagnostic::Logger;
 #Constructor
 my $log = lib::Diagnostic::Logger->new();
@@ -14,9 +14,9 @@ sub new{
 	bless($self,$class);
 
 	#Validate input parametres
-	my $input = lib::Entities::CandidatValidation->new(\%params);
+	my $input = lib::Entities::Validation->new(\%params);
 
-    unless ($input->validate('forename','surname')){
+    unless ($input->validate('forename','surname','age','email','citizenship','marital_status','children','phone_number')){
 		
 		$log->write_to_candidate_log($input->errors_to_string);
 
@@ -29,8 +29,12 @@ sub new{
             			unless ($self->can( $attrib )){			
 			   
 		       					$log->write_to_candidate_log("Invalid parameter '$attrib' passed to '$class' constructor");
+								$self = undef;
+								last;
+						}else{
+
+	        				$self->$attrib( $params{$attrib} );
 						}
-        				$self->$attrib( $params{$attrib} );
 
 			}   
 	} 
