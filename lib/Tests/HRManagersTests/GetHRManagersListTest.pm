@@ -1,17 +1,17 @@
-package lib::Tests::CandidatesTests::GetCandidatesListTest;
+package lib::Tests::HRManagersTests::GetHRmanagersListTest;
 use strict;
 use warnings;
 use Data::Dumper; 
 
 
 #Test here
-use lib::Portal::CandidatesPortal;
+use lib::Portal::HRManagersPortal;
 
 
 
-my $p = lib::Portal::CandidatesPortal->new();
+my $p = lib::Portal::HRManagersPortal->new();
 
-my $candidates = $p->get_candidates_list();
-print Dumper \$candidates;
+my $hrmanagers = $p->get_hrmanagers_list();
+print Dumper \$hrmanagers;
 
 

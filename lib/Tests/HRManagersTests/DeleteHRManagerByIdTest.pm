@@ -1,13 +1,18 @@
-package lib::Tests::CandidatesTests::DeleteCandidatTest;
+package lib::Tests::HRManagersTests::DeleteHRmanagerByIdTest;
 use strict;
 use warnings;
 use Data::Dumper; 
+
+
 #Test here
-use lib::Portal::CandidatesPortal;
+use lib::Portal::HRManagersPortal;
 
 
-my $p = lib::Portal::CandidatesPortal->new();
-$p->delete_candidat_by_id(5);
+
+my $p = lib::Portal::HRManagersPortal->new();
+
+
+$p->delete_hrmanager_by_id(1);
 
 
 

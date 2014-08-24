@@ -16,11 +16,11 @@ my %hrmanager1 = (
 my %hrmanager2 = (
 	forename => "Alexander",
 	surname => "Tangelov",
-	phone_number => "+375297559178",
+	phone_number => "375297559178",
 	email => "scyphius\@gmail.com"
 );
 
 my $p = lib::Portal::HRManagersPortal->new();
-$p->add_hrmanager(%hrmanager1);
+$p->add_hrmanager(%hrmanager2);
 
 

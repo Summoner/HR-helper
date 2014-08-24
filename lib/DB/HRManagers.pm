@@ -121,7 +121,7 @@ sub get_hrmanagers_list{
 							forename,
 							surname,
 							phone_number,
-							email FROM HRmanager");
+							email FROM HRManager");
 	$sth->execute() or die $DBI::errstr;
 		
 	while (my @row = $sth->fetchrow_array()) {

@@ -1,17 +1,18 @@
-package lib::Tests::CandidatesTests::GetCandidateByIdTest;
+package lib::Tests::HRManagersTests::GetHRmanagerByIdTest;
 use strict;
 use warnings;
 use Data::Dumper; 
 
 
 #Test here
-use lib::Portal::CandidatesPortal;
+use lib::Portal::HRManagersPortal;
 
 
 
-my $p = lib::Portal::CandidatesPortal->new();
 
-my $candidat = $p->get_candidat_by_id(6);
-print $candidat->{surname};
+my $p = lib::Portal::HRManagersPortal->new();
+
+my $hrmanager = $p->get_hrmanager_by_id(1);
+print $hrmanager->{surname};
 
 
