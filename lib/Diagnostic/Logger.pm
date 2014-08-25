@@ -23,7 +23,7 @@ sub write_to_candidate_log{
 	print $logfile $messageForWrite;
 	close $logfile;
 }
-sub write_to_interwiever_log{
+sub write_to_interviewer_log{
 
 	my($self,$message) = @_;
 	my $dt3 = DateTime->now(time_zone=>'local');

@@ -37,9 +37,11 @@ sub update_hrmanager_by_id{
 
 	my $self = shift;
 	my $id = shift;	
-	my $hrmanagers = lib::DB::HRManagers->new();
 	my $hrmanager = lib::Entities::HRManager->new(@_);
-	$hrmanagers->update_hrmanager_by_id($id,$hrmanager);
+	if (defined $hrmanager){
+		my $hrmanagers = lib::DB::HRManagers->new();
+		$hrmanagers->update_hrmanager_by_id($id,$hrmanager);
+	}
 }
 
 

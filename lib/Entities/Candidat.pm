@@ -12,7 +12,8 @@ sub new{
     my $self = {};
 	my %params = @_;
 	bless($self,$class);
-
+	
+	return $self if (scalar keys %params == 0);
 	#Validate input parametres
 	my $input = lib::Entities::Validation->new(\%params);
 

@@ -1,13 +1,12 @@
-#!/usr/bin/perl -w
+package lib::Portal::InterviewersPortal;
 use strict;
 use warnings;
 use Data::Dumper; 
-
-#Class - portal for access objects
-package lib::Portal::InterviewersPortal;
 use lib::DB::Interviewers;
+use lib::Entities::Interviewer;
 use lib::Diagnostic::Logger;
 use base 'lib::Portal';
+
 #Constructor
 sub new {
     my $class = shift;
@@ -19,11 +18,11 @@ sub new {
   sub add_interviewer{
 
 	my $self = shift;	
-	my $interviewers = lib::DB::Interviewers->new();
-	$interviewers->add_interviewer(@_);
-	my $log = lib::Diagnostic::Logger->new();
-	$log->write_to_log("Added interviewer");
-	
+	my $interviewer = lib::Entities::Interviewer->new(@_);
+	if (defined $interviewer){
+		my $interviewers = lib::DB::Interviewers->new();
+		$interviewers->add_interviewer($interviewer);
+	}
 }
 
 sub get_interviewer_by_id{
@@ -34,6 +33,19 @@ sub get_interviewer_by_id{
 	my $interviewer = $interviewers->get_interviewer_by_id($id);
 	return $interviewer
 }
+
+sub update_interviewer_by_id{
+
+	my $self = shift;
+	my $id = shift;	
+	
+	my $interviewer = lib::Entities::Interviewer->new(@_);
+	if (defined $interviewer){
+		my $interviewers = lib::DB::Interviewers->new();
+		$interviewers->update_interviewer_by_id($id,$interviewer);
+	}
+}
+
 
 sub delete_interviewer_by_id{
 
@@ -46,8 +58,8 @@ sub delete_interviewer_by_id{
 sub get_interviewers_list{
 
 	my $self = shift;	
-	my $interviewer = lib::DB::Interviewers->new();
-	my $interviewers = $interviewer->get_interviewers_list();
-	return $interviewers;
+	my $interviewers = lib::DB::Interviewers->new();
+	my $interviewers_list = $interviewers->get_interviewers_list();
+	return $interviewers_list;
 }
 1;

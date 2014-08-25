@@ -37,9 +37,11 @@ sub update_candidat_by_id{
 
 	my $self = shift;
 	my $id = shift;	
-	my $candidates = lib::DB::Candidates->new();
 	my $candidat = lib::Entities::Candidat->new(@_);
-	$candidates->update_candidat_by_id($id,$candidat);
+		if (defined $candidat){
+			my $candidates = lib::DB::Candidates->new();
+			$candidates->update_candidat_by_id($id,$candidat);
+		}
 }
 
 
