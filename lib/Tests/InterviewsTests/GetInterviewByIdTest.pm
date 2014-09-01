@@ -1,18 +1,18 @@
-package lib::Tests::InterviewersTests::GetInterviewerByIdTest;
+package lib::Tests::InterviewsTests::GetInterviewByIdTest;
 use strict;
 use warnings;
 use Data::Dumper; 
 
 
 #Test here
-use lib::Portal::InterviewersPortal;
+use lib::Portal::InterviewsPortal;
 
 
 
 
-my $p = lib::Portal::InterviewersPortal->new();
+my $p = lib::Portal::InterviewsPortal->new();
 
-my $interviewer = $p->get_interviewer_by_id(2);
-print $interviewer->{surname};
+my $interview = $p->get_interview_by_id(2);
+print $interview->{candidat}->{surname};
 
 

@@ -52,33 +52,79 @@ sub add_interview{
 
 }
 
-sub get_interviewer_by_id{
+sub get_interview_by_id{
 
 	my $self = shift;
 	my $id = shift;
 	my $dbh = DBI->connect($dsn, $userid, $password ) or die $DBI::errstr;
 	my $sth = $dbh->prepare("SELECT 
-							forename,
-							surname,
-							phone_number,
-							email FROM Interviewer WHERE id=?");
+							Interview.id,Interview.date,
+							i1.id,i1.forename,i1.surname,i1.phone_number,i1.email,
+							i2.id,i2.forename,i2.surname,i2.phone_number,i2.email,
+							i3.id,i3.forename,i3.surname,i3.phone_number,i3.email,
+							Interview.Result,Interview.ProcessDescription,					   Candidate.id,Candidate.forename,Candidate.surname,Candidate.age,Candidate.children,Candidate.citizenship,Candidate.education,Candidate.email,
+Candidate.expertise_areas,Candidate.foreign_lang,Candidate.marital_status,Candidate.phone_number,Candidate.position_apply,Candidate.prof_exp
+							from 
+							Interview join Interviewer i1 
+							on
+							Interview.Interviewer1 = i1.id
+							join Interviewer i2
+							on
+							Interview.Interviewer2 = i2.id
+							join Interviewer i3
+							on
+							Interview.Interviewer3 = i3.id
+							join Candidate
+							on
+							Interview.Candidat = Candidate.id
+							WHERE Interview.id=?");
 	$sth->execute( $id ) or die $DBI::errstr;
 
 	if ($sth->rows >1 || $sth->rows == 0){
 
 		my $log = lib::Diagnostic::Logger->new();
-		$log->write_to_interviewer_log("We have " . $sth->rows . " Interviewers with id: $id");
+		$log->write_to_interviewer_log("We have " . $sth->rows . " Interviews with id: $id");
 		return;
 	}
 	
 	my @row = $sth->fetchrow_array();
-	my $interviewer = lib::Entities::Interviewer->new();   	
-   		   ($interviewer->{forename},
-			$interviewer->{surname},
-			$interviewer->{phone_number},
-			$interviewer->{email}) = (@row);
+	my $interview = lib::Entities::Interview->new();   	
+   		   ($interview->{id},
+			$interview->{date},
+			$interview->{interviewer1}->{id},
+			$interview->{interviewer1}->{forename},
+			$interview->{interviewer1}->{surname},
+			$interview->{interviewer1}->{phone_number},
+			$interview->{interviewer1}->{email},
+			$interview->{interviewer2}->{id},
+			$interview->{interviewer2}->{forename},
+			$interview->{interviewer2}->{surname},
+			$interview->{interviewer2}->{phone_number},
+			$interview->{interviewer2}->{email},
+			$interview->{interviewer3}->{id},
+			$interview->{interviewer3}->{forename},
+			$interview->{interviewer3}->{surname},
+			$interview->{interviewer3}->{phone_number},
+			$interview->{interviewer3}->{email},
+			$interview->{result},
+			$interview->{process_description},
+			$interview->{candidat}->{id},
+			$interview->{candidat}->{forename},
+			$interview->{candidat}->{surname},
+			$interview->{candidat}->{age},
+			$interview->{candidat}->{children},
+			$interview->{candidat}->{citizenship},
+			$interview->{candidat}->{education},
+			$interview->{candidat}->{email},
+			$interview->{candidat}->{expertise_areas},
+			$interview->{candidat}->{foreign_lang},
+			$interview->{candidat}->{marital_status},
+			$interview->{candidat}->{phone_number},
+			$interview->{candidat}->{position_apply},
+			$interview->{candidat}->{prof_exp}
+								) = (@row);
 	$sth->finish();
-	return $interviewer;
+	return $interview;
 }
 sub update_interview_by_id{
 	
