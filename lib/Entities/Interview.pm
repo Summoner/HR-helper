@@ -9,8 +9,9 @@ use lib::Entities::Interviewer;
 use lib::Entities::Candidat;
 use lib::Entities::HRManager;
 
-#Constructor
-my $log = lib::Diagnostic::Logger->new();
+
+
+my $log = lib::Diagnostic::Logger->instance();
 sub new{	
 	my  $class = shift;
     my $self = {};

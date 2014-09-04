@@ -1,17 +1,17 @@
-package lib::Tests::InterviewersTests::GetInterviewersListTest;
+package lib::Tests::InterviewsTests::GetInterviewsListTest;
 use strict;
 use warnings;
 use Data::Dumper; 
 
 
 #Test here
-use lib::Portal::InterviewersPortal;
+use lib::Portal::InterviewsPortal;
 
 
 
-my $p = lib::Portal::InterviewersPortal->new();
+my $p = lib::Portal::InterviewsPortal->new();
 
-my $interviewers = $p->get_interviewers_list();
-print Dumper \$interviewers;
+my $interviews = $p->get_interviews_list();
+print Dumper \$interviews;
 
 

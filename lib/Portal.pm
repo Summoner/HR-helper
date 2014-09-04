@@ -1,12 +1,10 @@
-#!/usr/bin/perl -w
+package lib::Portal;
 use strict;
 use warnings;
 use Data::Dumper; 
 
 #Class - portal for access objects
-package lib::Portal;
-use lib::DB::Candidates;
-use lib::Diagnostic::Logger;
+
 #Constructor
 sub new {
     my $class = shift;

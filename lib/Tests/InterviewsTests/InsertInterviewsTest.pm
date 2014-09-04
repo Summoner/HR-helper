@@ -8,14 +8,16 @@ use Data::Dumper;
 use lib::Portal::InterviewsPortal;
 
 my %interview1 = (
-	date => "2014-08-28 19:52:50",
+	date => "2014-07-21 17:00:50",
 	result => "Job offer",
-	process_description => "All ok"	
+	process_description => "All was good"	
 );
-$interview1{candidat}->{id} = 5;
-$interview1{interviewer1}->{id} = 6;
-$interview1{interviewer2}->{id} = 7;
-$interview1{interviewer3}->{id} = 8;
+$interview1{candidat}->{id} = 1;
+$interview1{interviewer1}->{id} = 2;
+$interview1{interviewer2}->{id} = 3;
+$interview1{interviewer3}->{id} = 4;
+
+
 my $p = lib::Portal::InterviewsPortal->new();
 $p->add_interview(%interview1);
 

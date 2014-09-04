@@ -4,11 +4,12 @@ use strict;
 use warnings;
 use Data::Dumper; 
 use DateTime;
+use base 'Class::Singleton';
 
-#Constructor
-sub new{	
+
+sub _new_instance{	
 	my  $class = shift;
-    my $self = {@_};
+    my $self = {};
 	bless($self,$class);
 	return $self;
 }

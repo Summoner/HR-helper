@@ -1,1 +1,19 @@
-2014-09-01 13:53:40 Added 1 Interview
+2014-09-04 13:11:24 Added 1 Interview
+2014-09-04 13:13:21 Deleted: 1 Interview with id: 7
+
+2014-09-04 13:13:21 Deleted: 1 Interview with id: 8
+
+2014-09-04 13:21:39 We have 1 Interviews updated with id: 6
+2014-09-04 15:22:36 Cannot add or update a child row: a foreign key constraint fails (`HR`.`Interview`, CONSTRAINT `fk_Candidat` FOREIGN KEY (`Candidat`) REFERENCES `Candidate` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) at lib::DB::Interviews line 41
+2014-09-04 15:44:02 Added 1 Interview
+2014-09-04 15:45:32 Added 1 Interview
+2014-09-04 15:47:38 Added 1 Interview
+2014-09-04 16:10:17 Added 1 Interview
+2014-09-04 16:15:39 Added 1 Interview
+2014-09-04 16:18:34 Deleted: 1 Interview with id: 2
+2014-09-04 16:18:34 Deleted: 1 Interview with id: 3
+2014-09-04 16:18:34 Deleted: 1 Interview with id: 4
+2014-09-04 16:18:34 Deleted: 1 Interview with id: 5
+2014-09-04 16:18:34 Deleted: 1 Interview with id: 6
+2014-09-04 16:24:43 Added 1 Interview
+2014-09-04 16:29:07 Added 1 Interview

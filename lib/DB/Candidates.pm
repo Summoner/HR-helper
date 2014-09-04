@@ -2,19 +2,13 @@ package lib::DB::Candidates;
 use strict;
 use warnings;
 use Data::Dumper; 
-use DBI;
-
-#Class - repozitory for storing Candidates
-
+use lib::DB;
+use lib::Diagnostic::Logger;
 use lib::Entities::Candidat;
 
-my $driver = "mysql"; 
-my $database = "HR";
-my $dsn = "DBI:$driver:database=$database";
-my $userid = "HR";
-my $password = "1";
+my $log = lib::Diagnostic::Logger->instance();
+my $dbh = lib::DB->instance();
 
-#Constructor
 sub new{	
 	my  $class = shift;
 	my $self = {@_};
@@ -22,12 +16,10 @@ sub new{
 	return $self;
 }
 
-
 sub add_candidat{
 
 	my ($self,$candidat) = @_;	
 	
-	my $dbh = DBI->connect($dsn, $userid, $password ) or die $DBI::errstr;
 	my $sth = $dbh->prepare("INSERT INTO Candidate
                        (forename, 
 						surname,
@@ -57,8 +49,8 @@ sub add_candidat{
 					$candidat->{prof_exp},
 					$candidat->{foreign_lang},
 					$candidat->{education}
-	) or die $DBI::errstr;
-	my $log = lib::Diagnostic::Logger->new();
+	) || die $log->write_to_candidate_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
+	
 	$log->write_to_candidate_log("Added 1 candidat");
 	$sth->finish();
 
@@ -68,8 +60,7 @@ sub get_candidat_by_id{
 
 	my $self = shift;
 	my $id = shift;
-	#print $forename,"\n";
- 	my $dbh = DBI->connect($dsn, $userid, $password ) or die $DBI::errstr;
+	
 	my $sth = $dbh->prepare("SELECT 
 							forename,
 							surname,
@@ -84,11 +75,10 @@ sub get_candidat_by_id{
 							prof_exp,
 							foreign_lang,
 							education FROM Candidate WHERE id=?");
-	$sth->execute( $id ) or die $DBI::errstr;
+	$sth->execute( $id ) || die $log->write_to_candidate_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
 
 	if ($sth->rows >1 || $sth->rows == 0){
-
-		my $log = lib::Diagnostic::Logger->new();
+		
 		$log->write_to_candidate_log("We have " . $sth->rows . " candidates with id: $id");
 		return;
 	}
@@ -113,9 +103,8 @@ sub get_candidat_by_id{
 }
 sub update_candidat_by_id{
 	
-	my ($self,$id,$candidat) = @_;
-	
-	my $dbh = DBI->connect($dsn, $userid, $password ) or die $DBI::errstr;
+	my ($self,$id,$candidat) = @_;	
+
 	my $sth = $dbh->prepare("UPDATE Candidate
                         	SET forename = ?,
 							surname = ?,
@@ -145,9 +134,8 @@ $sth->execute($candidat->{forename},
 			$candidat->{prof_exp},
 			$candidat->{foreign_lang},
 			$candidat->{education},
-			$id ) or die $DBI::errstr;
+			$id )|| die $log->write_to_candidate_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
 
-		my $log = lib::Diagnostic::Logger->new();
 		$log->write_to_candidate_log("We have " . $sth->rows . " candidates updated with id: $id");
 		$sth->finish();
 }
@@ -155,11 +143,10 @@ sub delete_candidat_by_id{
 	
 	my $self = shift;
 	my $id = shift;
-	my $dbh = DBI->connect($dsn, $userid, $password ) or die $DBI::errstr;
-	my $sth = $dbh->prepare("DELETE FROM Candidate
-                        WHERE id = ?");
-	$sth->execute( $id ) or die $DBI::errstr;
-	my $log = lib::Diagnostic::Logger->new();
+	
+	my $sth = $dbh->prepare("DELETE FROM Candidate WHERE id = ?");
+	$sth->execute( $id ) || die $log->write_to_candidate_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
+	
 	$log->write_to_candidate_log("Deleted: " . $sth->rows . " candidates with id: $id");
 	$sth->finish();
 }
@@ -167,9 +154,8 @@ sub delete_candidat_by_id{
 sub get_candidates_list{
 	
 	my $candidates = [];	
-	my $self = shift;
-	
- 	my $dbh = DBI->connect($dsn, $userid, $password ) or die $DBI::errstr;
+	my $self = shift;	
+ 	
 	my $sth = $dbh->prepare("SELECT
 							id,
 							forename,
@@ -185,7 +171,7 @@ sub get_candidates_list{
 							prof_exp,
 							foreign_lang,
 							education FROM Candidate");
-	$sth->execute() or die $DBI::errstr;
+	$sth->execute()|| die $log->write_to_candidate_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
 		
 	while (my @row = $sth->fetchrow_array()) {
 			my $candidat = lib::Entities::Candidat->new();   	

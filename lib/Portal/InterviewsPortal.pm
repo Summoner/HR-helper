@@ -55,7 +55,7 @@ sub delete_interview_by_id{
 	$interviews->delete_interview_by_id($id);
 }
 
-sub get_interviewers_list{
+sub get_interviews_list{
 
 	my $self = shift;	
 	my $interviews = lib::DB::Interviews->new();

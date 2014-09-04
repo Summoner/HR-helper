@@ -12,7 +12,9 @@ use lib::Portal::InterviewersPortal;
 my $p = lib::Portal::InterviewersPortal->new();
 
 
-$p->delete_interviewer_by_id(2);
+$p->delete_interviewer_by_id(9);
+$p->delete_interviewer_by_id(10);
+$p->delete_interviewer_by_id(11);
 
 
 

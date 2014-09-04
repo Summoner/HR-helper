@@ -5,8 +5,8 @@ use warnings;
 use Data::Dumper; 
 use lib::Entities::Validation;
 use lib::Diagnostic::Logger;
-#Constructor
-my $log = lib::Diagnostic::Logger->new();
+
+my $log = lib::Diagnostic::Logger->instance();
 sub new{	
 	my  $class = shift;
     my $self = {};

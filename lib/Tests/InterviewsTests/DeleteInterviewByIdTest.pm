@@ -1,18 +1,22 @@
-package lib::Tests::InterviewersTests::DeleteInterviewerByIdTest;
+package lib::Tests::InterviewsTests::DeleteInterviewByIdTest;
 use strict;
 use warnings;
 use Data::Dumper; 
 
 
 #Test here
-use lib::Portal::InterviewersPortal;
+use lib::Portal::InterviewsPortal;
 
 
 
-my $p = lib::Portal::InterviewersPortal->new();
+my $p = lib::Portal::InterviewsPortal->new();
 
 
-$p->delete_interviewer_by_id(2);
+$p->delete_interview_by_id(2);
+$p->delete_interview_by_id(3);
+$p->delete_interview_by_id(4);
+$p->delete_interview_by_id(5);
+$p->delete_interview_by_id(6);
 
 
 

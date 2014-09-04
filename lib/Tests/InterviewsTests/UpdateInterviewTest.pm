@@ -1,27 +1,25 @@
-package lib::Tests::HRManagersTests::UpdateInterviewerTest;
+package lib::Tests::InterviewsTests::UpdateInterviewTest;
 use strict;
 use warnings;
 use Data::Dumper; 
 
 
 #Test here
-use lib::Portal::InterviewersPortal;
+use lib::Portal::InterviewsPortal;
 
-my %interviewer1 = (
-	forename => "Andreyus",
-	surname => "Tur",
-	phone_number => "375297559887",
-	email => "andrtur\@gmail.com"	
+my %interview1 = (
+	date => "2014-09-28 19:52:50",
+	result => "",
+	process_description => ""	
 );
-my %interviewer2 = (
-	forename => "Alexandrr1",
-	surname => "Tangelov",
-	phone_number => "375297559166",
-	email => "scyphius\@gmail.com"
-);
+$interview1{candidat}->{id} = 7;
+$interview1{interviewer1}->{id} = 6;
+$interview1{interviewer2}->{id} = 7;
+$interview1{interviewer3}->{id} = 8;
+$interview1{hrmanager}->{id} = 6;
 
-my $p = lib::Portal::InterviewersPortal->new();
-$p->update_interviewer_by_id(2,%interviewer2);
+my $p = lib::Portal::InterviewsPortal->new();
+$p->update_interview_by_id(6,%interview1);
 
 
 
