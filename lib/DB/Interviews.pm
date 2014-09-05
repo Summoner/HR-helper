@@ -19,6 +19,9 @@ sub add_interview{
 	my ($self,$interview) = @_;		
 	
 	$interview->{hrmanager}->{id} = 1 unless defined $interview->{hrmanager}->{id};
+	$interview->{interviewer1}->{id} = 1 unless defined $interview->{interviewer1}->{id};
+	$interview->{interviewer2}->{id} = 1 unless defined $interview->{interviewer2}->{id};
+	$interview->{interviewer3}->{id} = 1 unless defined $interview->{interviewer3}->{id};
 	my $sth = $dbh->prepare("INSERT INTO Interview
                        (date, 
 						Interviewer1,

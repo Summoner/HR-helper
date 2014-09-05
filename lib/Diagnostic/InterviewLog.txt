@@ -17,3 +17,5 @@
 2014-09-04 16:18:34 Deleted: 1 Interview with id: 6
 2014-09-04 16:24:43 Added 1 Interview
 2014-09-04 16:29:07 Added 1 Interview
+2014-09-05 08:36:01 Cannot add or update a child row: a foreign key constraint fails (`HR`.`Interview`, CONSTRAINT `fk_HRManager` FOREIGN KEY (`HRManager`) REFERENCES `HRManager` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION) at lib::DB::Interviews line 45
+2014-09-05 08:36:36 Added 1 Interview
