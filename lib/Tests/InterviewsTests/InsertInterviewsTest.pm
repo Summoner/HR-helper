@@ -3,8 +3,6 @@ use strict;
 use warnings;
 use Data::Dumper; 
 
-
-#Test here
 use lib::Portal::InterviewsPortal;
 
 my %interview1 = (
