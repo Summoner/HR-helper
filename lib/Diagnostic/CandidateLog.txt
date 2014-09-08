@@ -4,3 +4,8 @@
 2014-09-04 14:59:14 Added 1 candidat
 2014-09-04 14:59:14 Added 1 candidat
 2014-09-04 14:59:14 Added 1 candidat
+2014-09-08 13:52:06 Added 1 candidat
+2014-09-08 13:55:45 Please enter only digits with length from 1 to 15 for phone number
+2014-09-08 13:56:51 Please enter only digits with length from 1 to 15 for phone number
+2014-09-08 13:57:37 We have 1 candidates updated with id: 7
+2014-09-08 14:00:39 Deleted: 1 candidates with id: 7

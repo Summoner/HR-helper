@@ -3,15 +3,14 @@ use strict;
 use warnings;
 use Data::Dumper; 
 
-
 #Test here
-use lib::Portal::CandidatesPortal;
+use lib::BLL::Candidates;
 
 
 
-my $p = lib::Portal::CandidatesPortal->new();
+my $p = lib::BLL::Candidates->new();
 
-my $candidates = $p->get_candidates_list();
+my $candidates = $p->get_list();
 print Dumper \$candidates;
 
 

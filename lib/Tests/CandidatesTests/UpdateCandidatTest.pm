@@ -1,9 +1,9 @@
-package package lib::Tests::CandidatesTests::UpdateCandidatTest;
+package lib::Tests::CandidatesTests::UpdateCandidatTest;
 use strict;
 use warnings;
 use Data::Dumper; 
 #Test here
-use lib::Portal::CandidatesPortal;
+use lib::BLL::Candidates;
 
 my %candidat1 = (
 	forename => "Alex",
@@ -12,7 +12,7 @@ my %candidat1 = (
 	citizenship => "Belarus",
 	marital_status => "Married",
 	children => "1",
-	phone_number => "+375297559155",
+	phone_number => "375297559155",
 	email => "andrtur\@gmail.com",
 	position_apply => "Software developer",
 	expertise_areas => "Perl,Git,SQL,C#",
@@ -27,7 +27,7 @@ my %candidat2 = (
 	citizenship => "Ukraine",
 	marital_status => "Married",
 	children => "2",
-	phone_number => "+375297559178",
+	phone_number => "375297559178",
 	email => "scyphius\@gmail.com",
 	position_apply => "Software developer",
 	expertise_areas => "Perl,Git,SQL",
@@ -36,8 +36,8 @@ my %candidat2 = (
 	education => "IT university Harkov 2004 year"
 );
 
-my $p = lib::Portal::CandidatesPortal->new();
-$p->update_candidat_by_id(4,%candidat1);
+my $p = lib::BLL::Candidates->new();
+$p->update_by_id(7,%candidat1);
 #my $candidat = $p->get_candidat_by_id(1);
 #print $candidat->{surname};
 

@@ -3,11 +3,11 @@ use strict;
 use warnings;
 use Data::Dumper; 
 #Test here
-use lib::Portal::CandidatesPortal;
+use lib::BLL::Candidates;
 
 
-my $p = lib::Portal::CandidatesPortal->new();
-$p->delete_candidat_by_id(5);
+my $p = lib::BLL::Candidates->new();
+$p->delete_by_id(7);
 
 
 

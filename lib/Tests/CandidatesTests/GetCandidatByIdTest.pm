@@ -5,13 +5,11 @@ use Data::Dumper;
 
 
 #Test here
-use lib::Portal::CandidatesPortal;
+use lib::BLL::Candidates;
 
+my $p = lib::BLL::Candidates->new();
 
-
-my $p = lib::Portal::CandidatesPortal->new();
-
-my $candidat = $p->get_candidat_by_id(6);
+my $candidat = $p->get_by_id(6);
 print $candidat->{surname};
 
 

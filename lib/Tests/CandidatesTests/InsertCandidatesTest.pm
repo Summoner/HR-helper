@@ -5,7 +5,7 @@ use Data::Dumper;
 
 
 #Test here
-use lib::Portal::CandidatesPortal;
+use lib::BLL::Candidates;
 
 my %candidat1 = (
 	forename => "Andrey",
@@ -99,12 +99,29 @@ my %candidat6 = (
 	education => "IT university Harkov 2004 year"
 );
 
-my $p = lib::Portal::CandidatesPortal->new();
-$p->add_candidat(%candidat1);
-$p->add_candidat(%candidat2);
-$p->add_candidat(%candidat3);
-$p->add_candidat(%candidat4);
-$p->add_candidat(%candidat5);
-$p->add_candidat(%candidat6);
+my %candidat7 = (
+	forename => "Ivan",
+	surname => "Pupkin",
+	age => "33",
+	citizenship => "Ukraine",
+	marital_status => "Married",
+	children => "2",
+	phone_number => "375297559178",
+	email => "scyphius\@gmail.com",
+	position_apply => "Software developer",
+	expertise_areas => "Perl,MySQL",
+	prof_exp => "10 years",
+	foreign_lang => "English,Russian",
+	education => "IT university Harkov 2004 year"
+);
+
+
+my $p = lib::BLL::Candidates->new();
+#$p->add_candidat(%candidat1);
+#$p->add_candidat(%candidat2);
+#$p->add_candidat(%candidat3);
+#$p->add_candidat(%candidat4);
+#$p->add_candidat(%candidat5);
+$p->add(%candidat7);
 
 
