@@ -5,16 +5,16 @@ use Data::Dumper;
 
 
 #Test here
-use lib::Portal::InterviewersPortal;
+use lib::Portal;
 
 
 
-my $p = lib::Portal::InterviewersPortal->new();
+my $p = lib::Portal->new();
 
 
-$p->delete_interviewer_by_id(9);
-$p->delete_interviewer_by_id(10);
-$p->delete_interviewer_by_id(11);
+$p->delete_interviewer(5);
+#$p->delete_interviewer_by_id(10);
+#$p->delete_interviewer_by_id(11);
 
 
 

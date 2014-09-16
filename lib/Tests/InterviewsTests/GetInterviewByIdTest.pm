@@ -5,14 +5,11 @@ use Data::Dumper;
 
 
 #Test here
-use lib::Portal::InterviewsPortal;
+use lib::Portal;
 
+my $p = lib::Portal->new();
 
-
-
-my $p = lib::Portal::InterviewsPortal->new();
-
-my $interview = $p->get_interview_by_id(2);
+my $interview = $p->get_interview(7);
 print $interview->{candidat}->{surname};
 
 

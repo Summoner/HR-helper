@@ -1,11 +1,11 @@
-package lib::Tests::CandidatesTests::Test;
+package lib::Tests::CandidatesTests::InsertCandidatesTest;
 use strict;
 use warnings;
 use Data::Dumper; 
 
 
 #Test here
-use lib::BLL::Candidates;
+use lib::Portal;
 
 my %candidat1 = (
 	forename => "Andrey",
@@ -116,12 +116,12 @@ my %candidat7 = (
 );
 
 
-my $p = lib::BLL::Candidates->new();
+my $p = lib::Portal->new();
 #$p->add_candidat(%candidat1);
 #$p->add_candidat(%candidat2);
 #$p->add_candidat(%candidat3);
 #$p->add_candidat(%candidat4);
 #$p->add_candidat(%candidat5);
-$p->add(%candidat7);
+$p->add_candidat(%candidat7);
 
 

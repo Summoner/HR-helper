@@ -5,14 +5,12 @@ use Data::Dumper;
 
 
 #Test here
-use lib::Portal::HRManagersPortal;
+use lib::Portal;
+
+my $p = lib::Portal->new();
 
 
-
-my $p = lib::Portal::HRManagersPortal->new();
-
-
-$p->delete_hrmanager_by_id(1);
+$p->delete_hrmanager(5);
 
 
 

@@ -5,11 +5,11 @@ use Data::Dumper;
 
 
 #Test here
-use lib::Portal::InterviewersPortal;
+use lib::Portal;
 
 
 
-my $p = lib::Portal::InterviewersPortal->new();
+my $p = lib::Portal->new();
 
 my $interviewers = $p->get_interviewers_list();
 print Dumper \$interviewers;

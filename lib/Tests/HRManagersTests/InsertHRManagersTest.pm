@@ -5,7 +5,7 @@ use Data::Dumper;
 
 
 #Test here
-use lib::Portal::HRManagersPortal;
+use lib::Portal;
 
 my %hrmanager1 = (
 	forename => "Anna",
@@ -21,9 +21,9 @@ my %hrmanager2 = (
 );
 my %hrmanager3 = (
 );
-my $p = lib::Portal::HRManagersPortal->new();
+my $p = lib::Portal->new();
 $p->add_hrmanager(%hrmanager1);
-$p->add_hrmanager(%hrmanager2);
+#$p->add_hrmanager(%hrmanager2);
 
 
 

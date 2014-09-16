@@ -4,13 +4,12 @@ use warnings;
 use Data::Dumper; 
 
 #Test here
-use lib::BLL::Candidates;
+use lib::Portal;
 
 
+my $p = lib::Portal->new();
 
-my $p = lib::BLL::Candidates->new();
-
-my $candidates = $p->get_list();
+my $candidates = $p->get_candidates_list();
 print Dumper \$candidates;
 
 

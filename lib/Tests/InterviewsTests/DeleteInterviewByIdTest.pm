@@ -5,18 +5,18 @@ use Data::Dumper;
 
 
 #Test here
-use lib::Portal::InterviewsPortal;
+use lib::Portal;
 
 
 
-my $p = lib::Portal::InterviewsPortal->new();
+my $p = lib::Portal->new();
 
 
-$p->delete_interview_by_id(2);
-$p->delete_interview_by_id(3);
-$p->delete_interview_by_id(4);
-$p->delete_interview_by_id(5);
-$p->delete_interview_by_id(6);
+$p->delete_interview(11);
+#$p->delete_interview_by_id(3);
+#$p->delete_interview_by_id(4);
+#$p->delete_interview_by_id(5);
+#$p->delete_interview_by_id(6);
 
 
 

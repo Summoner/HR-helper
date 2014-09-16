@@ -19,3 +19,9 @@
 2014-09-04 16:29:07 Added 1 Interview
 2014-09-05 08:36:01 Cannot add or update a child row: a foreign key constraint fails (`HR`.`Interview`, CONSTRAINT `fk_HRManager` FOREIGN KEY (`HRManager`) REFERENCES `HRManager` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION) at lib::DB::Interviews line 45
 2014-09-05 08:36:36 Added 1 Interview
+2014-09-16 15:19:32 Added 1 Interview
+2014-09-16 15:20:44 Cannot add or update a child row: a foreign key constraint fails (`HR`.`Interview`, CONSTRAINT `fk_Candidat` FOREIGN KEY (`Candidat`) REFERENCES `Candidat` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) at lib::DAL::Interviews line 158
+2014-09-16 15:22:12 We have 1 Interviews updated with id: 11
+2014-09-16 15:24:25 Deleted: 1 Interview with id: 11
+2014-09-16 15:26:36 Table 'HR.Candidate' doesn't exist at lib::DAL::Interviews line 82
+2014-09-16 15:34:34 Unknown column 'Candidate.education' in 'field list' at lib::DAL::Interviews line 100

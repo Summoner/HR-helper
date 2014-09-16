@@ -5,14 +5,14 @@ use Data::Dumper;
 
 
 #Test here
-use lib::Portal::HRManagersPortal;
+use lib::Portal;
 
 
 
 
-my $p = lib::Portal::HRManagersPortal->new();
+my $p = lib::Portal->new();
 
-my $hrmanager = $p->get_hrmanager_by_id(1);
+my $hrmanager = $p->get_hrmanager(2);
 print $hrmanager->{surname};
 
 

@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use Data::Dumper; 
 #Test here
-use lib::BLL::Candidates;
+use lib::Portal;
 
 my %candidat1 = (
 	forename => "Alex",
@@ -36,8 +36,8 @@ my %candidat2 = (
 	education => "IT university Harkov 2004 year"
 );
 
-my $p = lib::BLL::Candidates->new();
-$p->update_by_id(7,%candidat1);
+my $p = lib::Portal->new();
+$p->update_candidat(8,%candidat1);
 #my $candidat = $p->get_candidat_by_id(1);
 #print $candidat->{surname};
 

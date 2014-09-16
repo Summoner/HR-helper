@@ -1,11 +1,11 @@
-package lib::Tests::HRManagersTests::UpdateInterviewerTest;
+package lib::Tests::InterviewersTests::UpdateInterviewerTest;
 use strict;
 use warnings;
 use Data::Dumper; 
 
 
 #Test here
-use lib::Portal::InterviewersPortal;
+use lib::Portal;
 
 my %interviewer1 = (
 	forename => "Andreyus",
@@ -14,14 +14,14 @@ my %interviewer1 = (
 	email => "andrtur\@gmail.com"	
 );
 my %interviewer2 = (
-	forename => "Alexandrr1",
+	forename => "Alexandr",
 	surname => "Tangelov",
 	phone_number => "375297559166",
 	email => "scyphius\@gmail.com"
 );
 
-my $p = lib::Portal::InterviewersPortal->new();
-$p->update_interviewer_by_id(2,%interviewer2);
+my $p = lib::Portal->new();
+$p->update_interviewer(5,%interviewer2);
 
 
 

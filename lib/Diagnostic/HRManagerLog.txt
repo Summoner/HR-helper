@@ -1,3 +1,8 @@
 2014-09-04 14:38:03 Added 1 HRmanager
 2014-09-04 14:45:19 Added 1 HRmanager
 2014-09-04 14:45:19 Added 1 HRmanager
+2014-09-15 15:35:01 Added 1 HRmanager
+2014-09-15 15:37:48 Added 1 HRmanager
+2014-09-15 15:39:30 We have 1 HRManagers updated with id: 4
+2014-09-15 15:41:06 Deleted: 1 HRManagers with id: 4
+2014-09-15 15:41:23 Deleted: 1 HRManagers with id: 5

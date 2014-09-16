@@ -5,7 +5,7 @@ use Data::Dumper;
 
 
 #Test here
-use lib::Portal::InterviewersPortal;
+use lib::Portal;
 
 my %interviewer1 = (
 	forename => "John",
@@ -27,8 +27,8 @@ my %interviewer3 = (
 );
 my %interviewer4 = (
 );
-my $p = lib::Portal::InterviewersPortal->new();
+my $p = lib::Portal->new();
 $p->add_interviewer(%interviewer1);
-$p->add_interviewer(%interviewer2);
-$p->add_interviewer(%interviewer3);
+#$p->add_interviewer(%interviewer2);
+#$p->add_interviewer(%interviewer3);
 

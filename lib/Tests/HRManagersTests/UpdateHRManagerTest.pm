@@ -5,7 +5,7 @@ use Data::Dumper;
 
 
 #Test here
-use lib::Portal::HRManagersPortal;
+use lib::Portal;
 
 my %hrmanager1 = (
 	forename => "Andreyus",
@@ -20,8 +20,8 @@ my %hrmanager2 = (
 	email => "scyphius\@gmail.com"
 );
 
-my $p = lib::Portal::HRManagersPortal->new();
-$p->update_hrmanager_by_id(1,%hrmanager1);
+my $p = lib::Portal->new();
+$p->update_hrmanager(4,%hrmanager1);
 
 
 

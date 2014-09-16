@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use Data::Dumper; 
 
-use lib::Portal::InterviewsPortal;
+use lib::Portal;
 
 my %interview1 = (
 	date => "2014-07-21 17:00:50",
@@ -16,6 +16,6 @@ $interview1{interviewer2}->{id} = 3;
 $interview1{interviewer3}->{id} = 4;
 $interview1{hrmanager}->{id} = 3;
 
-my $p = lib::Portal::InterviewsPortal->new();
+my $p = lib::Portal->new();
 $p->add_interview(%interview1);
 
