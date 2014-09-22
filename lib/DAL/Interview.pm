@@ -3,16 +3,19 @@ use strict;
 use warnings;
 use Data::Dumper; 
 use lib::DB;
-use lib::Diagnostic::Logger;
 use base 'lib::DAL';
+use Log::Log4perl;
+
+
+my $dbh = lib::DB->instance();
+my $log = Log::Log4perl->get_logger(__PACKAGE__);
+
 sub new{	
 	my  $class = shift;
 	my $self = {};
 	bless($self,$class);
 	return $self;
 }
-my $log = lib::Diagnostic::Logger->instance();
-my $dbh = lib::DB->instance();
 
 sub add{
 
@@ -42,9 +45,9 @@ sub add{
 					$interview->{candidat}->{id},
 					$interview->{hrmanager}->{id}	
 				
-	)|| die $log->write_to_interview_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);	
+	)|| die $log->error("$DBI::errstr");	
 	
-	$log->write_to_interview_log("Added 1 Interview");
+	$log->info("Added 1 Interview");
 	$sth->finish();
 
 }
@@ -97,11 +100,11 @@ sub get_by_id{
 							on
 							Interview.HRManager = HRManager.id
 							WHERE Interview.id=?");
-	$sth->execute( $id ) || die $log->write_to_interview_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);	
+	$sth->execute( $id ) || die $log->error("$DBI::errstr");	
 
 	if ($sth->rows >1 || $sth->rows == 0){
 		
-		$log->write_to_interviewer_log("We have " . $sth->rows . " Interviews with id: $id");
+		$log->info("We have " . $sth->rows . " Interviews with id: $id");
 		return;
 	}
 	
@@ -173,9 +176,9 @@ sub update_by_id{
 					$interview->{candidat}->{id},
 					$interview->{hrmanager}->{id},
 					$id					
-	) || die $log->write_to_interview_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
+	) || die $log->error("$DBI::errstr");
 		
-		$log->write_to_interview_log("We have " . $sth->rows . " Interviews updated with id: $id");
+		$log->info("We have " . $sth->rows . " Interviews updated with id: $id");
 		$sth->finish();
 }
 sub delete_by_id{
@@ -183,11 +186,10 @@ sub delete_by_id{
 	my $self = shift;
 	my $id = shift;
 	
-	my $sth = $dbh->prepare("DELETE FROM Interview
-                        WHERE id = ?");
-	$sth->execute( $id ) || die $log->write_to_interview_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
+	my $sth = $dbh->prepare("DELETE FROM Interview WHERE id = ?");
+	$sth->execute( $id ) || die $log->error("$DBI::errstr");
 	
-	$log->write_to_interview_log("Deleted: " . $sth->rows . " Interview with id: $id");
+	$log->info("Deleted: " . $sth->rows . " Interview with id: $id");
 	$sth->finish();
 }
 
@@ -238,7 +240,7 @@ sub get_list{
 							join HRManager
 							on
 							Interview.HRManager = HRManager.id");
-	$sth->execute() || die $log->write_to_interview_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
+	$sth->execute() || die $log->error("$DBI::errstr");
 		
 	while (my @row = $sth->fetchrow_array()) {
 			my $interview = lib::Entities::Interview->new();   	

@@ -1,17 +1,15 @@
 package lib::Entities::Interview;
-
 use strict;
 use warnings;
 use Data::Dumper;  
 use lib::Entities::Validation;
-use lib::Diagnostic::Logger;
 use lib::Entities::Interviewer;
 use lib::Entities::Candidat;
 use lib::Entities::HRManager;
+use Log::Log4perl;
 
+my $log = Log::Log4perl->get_logger(__PACKAGE__);
 
-
-my $log = lib::Diagnostic::Logger->instance();
 sub new{	
 	my  $class = shift;
     my $self = {};
@@ -24,7 +22,7 @@ sub new{
        
             			unless ($self->can( $attrib )){			
 			   
-		       					$log->write_to_interview_log("Invalid parameter '$attrib' passed to '$class' constructor");
+		       					$log->error("Invalid parameter '$attrib' passed to '$class' constructor");
 								$self = undef;
 								last;
 						}else{

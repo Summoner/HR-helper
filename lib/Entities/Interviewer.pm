@@ -1,13 +1,13 @@
 package lib::Entities::Interviewer;
-
 use strict;
 use warnings;
 use Data::Dumper;  
 use lib::Entities::Validation;
-use lib::Diagnostic::Logger;
+use Log::Log4perl;
+
+my $log = Log::Log4perl->get_logger(__PACKAGE__);
 
 
-my $log = lib::Diagnostic::Logger->instance();
 sub new{	
 	my  $class = shift;
     my $self = {};
@@ -21,7 +21,7 @@ sub new{
 
     unless ($input->validate('forename','surname','email','phone_number')){
 		
-		$log->write_to_interviewer_log($input->errors_to_string);
+		$log->error($input->errors_to_string);
 
 		$self = undef;
 
@@ -31,7 +31,7 @@ sub new{
        
             			unless ($self->can( $attrib )){			
 			   
-		       					$log->write_to_interviewer_log("Invalid parameter '$attrib' passed to '$class' constructor");
+		       					$log->error("Invalid parameter '$attrib' passed to '$class' constructor");
 								$self = undef;
 								last;
 						}else{

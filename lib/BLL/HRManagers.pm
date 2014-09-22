@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use Data::Dumper; 
 use lib::DAL::HRManager;
-use lib::Diagnostic::Logger;
+
 use base 'lib::BLL';
 
 #Constructor

@@ -1,0 +1,5 @@
+[48] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 57 lib.DAL.Candidat - Added 1 candidat
+[27] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 42 lib.DAL.Candidat - called with 13 bind variables when 12 are needed
+[28] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 42 lib.DAL.Candidat - called with 13 bind variables when 12 are needed
+[2014/09/22 14:23:32] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 155 lib.DAL.Candidat - Deleted: 1 candidates with id: 7
+[2014/09/22 14:23:55] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 155 lib.DAL.Candidat - Deleted: 1 candidates with id: 8

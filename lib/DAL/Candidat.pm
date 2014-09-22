@@ -3,11 +3,11 @@ use strict;
 use warnings;
 use Data::Dumper; 
 use base 'lib::DAL';
-use lib::Diagnostic::Logger;
 use lib::Entities::Candidat;
 use lib::DB;
+use Log::Log4perl;
 
-my $log = lib::Diagnostic::Logger->instance();
+my $log = Log::Log4perl->get_logger(__PACKAGE__);
 my $dbh = lib::DB->instance();
 
 sub new{	
@@ -36,7 +36,7 @@ sub add{
 						foreign_lang,
 						education )
                         values
-                       (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                       (?,?,?,?,?,?,?,?,?,?,?,?,)");
 	$sth->execute($candidat->{forename},
 					$candidat->{surname},
 					$candidat->{age},
@@ -50,9 +50,9 @@ sub add{
 					$candidat->{prof_exp},
 					$candidat->{foreign_lang},
 					$candidat->{education}
-	) || die $log->write_to_candidate_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
+	) || die $log->error("$DBI::errstr");
 	
-	$log->write_to_candidate_log("Added 1 candidat");
+	$log->info("Added 1 candidat");
 	$sth->finish();
 
 }
@@ -76,11 +76,12 @@ sub get_by_id{
 							prof_exp,
 							foreign_lang,
 							education FROM Candidat WHERE id=?");
-	$sth->execute( $id ) || die $log->write_to_candidate_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
+	$sth->execute( $id ) || die $log->error("$DBI::errstr");
+
 
 	if ($sth->rows >1 || $sth->rows == 0){
 		
-		$log->write_to_candidate_log("We have " . $sth->rows . " candidates with id: $id");
+		$log->info("We have " . $sth->rows . " candidates with id: $id");
 		return;
 	}
 	
@@ -135,9 +136,10 @@ $sth->execute($candidat->{forename},
 			$candidat->{prof_exp},
 			$candidat->{foreign_lang},
 			$candidat->{education},
-			$id )|| die $log->write_to_candidate_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
+			$id )|| die $log->error("$DBI::errstr");
+;
 
-		$log->write_to_candidate_log("We have " . $sth->rows . " candidates updated with id: $id");
+		$log->info("We have " . $sth->rows . " candidates updated with id: $id");
 		$sth->finish();
 }
 sub delete_by_id{
@@ -146,9 +148,9 @@ sub delete_by_id{
 	my $id = shift;
 	
 	my $sth = $dbh->prepare("DELETE FROM Candidat WHERE id = ?");
-	$sth->execute( $id ) || die $log->write_to_candidate_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
+	$sth->execute( $id ) || die $log->error("$DBI::errstr");
 	
-	$log->write_to_candidate_log("Deleted: " . $sth->rows . " candidates with id: $id");
+	$log->info("Deleted: " . $sth->rows . " candidates with id: $id");
 	$sth->finish();
 }
 
@@ -172,7 +174,7 @@ sub get_list{
 							prof_exp,
 							foreign_lang,
 							education FROM Candidat");
-	$sth->execute()|| die $log->write_to_candidate_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
+	$sth->execute()|| die $log->error("$DBI::errstr");
 		
 	while (my @row = $sth->fetchrow_array()) {
 			my $candidat = lib::Entities::Candidat->new();   	

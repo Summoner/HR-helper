@@ -3,11 +3,11 @@ use strict;
 use warnings;
 use Data::Dumper; 
 use lib::DB;
-use lib::Diagnostic::Logger;
 use lib::Entities::Interviewer;
 use base 'lib::DAL';
+use Log::Log4perl;
 
-my $log = lib::Diagnostic::Logger->instance();
+my $log = Log::Log4perl->get_logger(__PACKAGE__);
 my $dbh = lib::DB->instance();
 
 sub new{	
@@ -33,9 +33,9 @@ sub add{
 					$interviewer->{surname},
 					$interviewer->{phone_number},
 					$interviewer->{email}
-	) || die $log->write_to_interviewer_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
+	) || die $log->error("$DBI::errstr");
 	
-	$log->write_to_interviewer_log("Added 1 Interviewer");
+	$log->info("Added 1 Interviewer");
 	$sth->finish();
 
 }
@@ -50,11 +50,11 @@ sub get_by_id{
 							surname,
 							phone_number,
 							email FROM Interviewer WHERE id=?");
-	$sth->execute( $id ) || die $log->write_to_interviewer_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
+	$sth->execute( $id ) || die $log->error("$DBI::errstr");
 
 	if ($sth->rows >1 || $sth->rows == 0){
 
-		$log->write_to_interviewer_log("We have " . $sth->rows . " Interviewers with id: $id");
+		$log->info("We have " . $sth->rows . " Interviewers with id: $id");
 		return;
 	}
 	
@@ -82,9 +82,9 @@ $sth->execute($interviewer->{forename},
 			$interviewer->{surname},
 			$interviewer->{phone_number},
 			$interviewer->{email},
-			$id ) || die $log->write_to_interviewer_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
+			$id ) || die $log->error("$DBI::errstr");
 
-		$log->write_to_interviewer_log("We have " . $sth->rows . " Interviewers updated with id: $id");
+		$log->info("We have " . $sth->rows . " Interviewers updated with id: $id");
 		$sth->finish();
 }
 sub delete_by_id{
@@ -94,8 +94,8 @@ sub delete_by_id{
 	
 	my $sth = $dbh->prepare("DELETE FROM Interviewer
                         WHERE id = ?");
-	$sth->execute( $id ) || die $log->write_to_interviewer_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
-	$log->write_to_interviewer_log("Deleted: " . $sth->rows . " Interviewer with id: $id");
+	$sth->execute( $id ) || die $log->error("$DBI::errstr");
+	$log->info("Deleted: " . $sth->rows . " Interviewer with id: $id");
 	$sth->finish();
 }
 
@@ -110,7 +110,7 @@ sub get_list{
 							surname,
 							phone_number,
 							email FROM Interviewer");
-	$sth->execute() || die $log->write_to_interviewer_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
+	$sth->execute() || die $log->error("$DBI::errstr");
 
 	while (my @row = $sth->fetchrow_array()) {
 			my $interviewer = lib::Entities::Interviewer->new();   	

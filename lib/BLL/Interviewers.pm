@@ -4,7 +4,7 @@ use warnings;
 use Data::Dumper; 
 use lib::DAL::Interviewer;
 use lib::Entities::Interviewer;
-use lib::Diagnostic::Logger;
+
 use base 'lib::BLL';
 
 #Constructor

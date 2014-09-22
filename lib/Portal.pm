@@ -6,7 +6,10 @@ use lib::BLL::Candidates;
 use lib::BLL::HRManagers;
 use lib::BLL::Interviewers;
 use lib::BLL::Interviews;
-#Class - portal for access objects
+use Log::Log4perl;
+
+Log::Log4perl->init("/home/fanatic/Summoner/HR-helper/lib/Diagnostic/log.conf");
+
 
 #Constructor
 sub new {

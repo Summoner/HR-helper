@@ -3,11 +3,11 @@ use strict;
 use warnings;
 use Data::Dumper; 
 use base 'lib::DAL';
-use lib::Diagnostic::Logger;
 use lib::Entities::HRManager;
 use lib::DB;
+use Log::Log4perl;
 
-my $log = lib::Diagnostic::Logger->instance();
+my $log = Log::Log4perl->get_logger(__PACKAGE__);
 my $dbh = lib::DB->instance();
 
 sub new{	
@@ -33,9 +33,9 @@ sub add{
 					$hrmanager->{surname},
 					$hrmanager->{phone_number},
 					$hrmanager->{email}
-	) || die $log->write_to_hrmanager_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
+	) || die $log->error("$DBI::errstr");
 	
-	$log->write_to_hrmanager_log("Added 1 HRmanager");
+	$log->info("Added 1 HRmanager");
 	$sth->finish();
 
 }
@@ -50,11 +50,11 @@ sub get_by_id{
 							surname,
 							phone_number,
 							email FROM HRManager WHERE id=?");
-	$sth->execute( $id )|| die $log->write_to_hrmanager_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
+	$sth->execute( $id )|| die $log->error("$DBI::errstr");
 
 	if ($sth->rows >1 || $sth->rows == 0){
 		
-		$log->write_to_hrmanager_log("We have " . $sth->rows . " HRManagers with id: $id");
+		$log->info("We have " . $sth->rows . " HRManagers with id: $id");
 		return;
 	}
 	
@@ -82,9 +82,9 @@ $sth->execute($hrmanager->{forename},
 			$hrmanager->{surname},
 			$hrmanager->{phone_number},
 			$hrmanager->{email},
-			$id ) || die $log->write_to_hrmanager_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
+			$id ) || die $log->error("$DBI::errstr");
 		
-		$log->write_to_hrmanager_log("We have " . $sth->rows . " HRManagers updated with id: $id");
+		$log->info("We have " . $sth->rows . " HRManagers updated with id: $id");
 		$sth->finish();
 }
 sub delete_by_id{
@@ -94,9 +94,9 @@ sub delete_by_id{
 	
 	my $sth = $dbh->prepare("DELETE FROM HRManager
                         WHERE id = ?");
-	$sth->execute( $id ) || die $log->write_to_hrmanager_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
+	$sth->execute( $id ) || die $log->error("$DBI::errstr");
 	
-	$log->write_to_hrmanager_log("Deleted: " . $sth->rows . " HRManagers with id: $id");
+	$log->info("Deleted: " . $sth->rows . " HRManagers with id: $id");
 	$sth->finish();
 }
 
@@ -111,7 +111,7 @@ sub get_list{
 							surname,
 							phone_number,
 							email FROM HRManager");
-	$sth->execute() || die $log->write_to_hrmanager_log("$DBI::errstr "."at ". __PACKAGE__ ." line ". __LINE__);
+	$sth->execute() || die $log->error("$DBI::errstr");
 		
 	while (my @row = $sth->fetchrow_array()) {
 			my $hrmanager = lib::Entities::HRManager->new();   	
