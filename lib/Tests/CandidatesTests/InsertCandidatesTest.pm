@@ -6,6 +6,7 @@ use Data::Dumper;
 
 #Test here
 use lib::Portal;
+open my $cv, "/home/fanatic/Summoner/HR-helper/Resume.doc" || die "Can't open file: $!\n";
 
 my %candidat1 = (
 	forename => "Andrey",
@@ -20,7 +21,9 @@ my %candidat1 = (
 	expertise_areas => "Perl,Git,SQL,C#",
 	prof_exp => "7 years",
 	foreign_lang => "English,Russian",
-	education => "IT university Minsk 2004 year"	
+	education => "IT university Minsk 2004 year",
+    cv => $cv,
+    status => 0
 );
 my %candidat2 = (
 	forename => "Alexander",
@@ -122,6 +125,6 @@ my $p = lib::Portal->new();
 #$p->add_candidat(%candidat3);
 #$p->add_candidat(%candidat4);
 #$p->add_candidat(%candidat5);
-$p->add_candidat(%candidat7);
+$p->add_candidat(%candidat1);
 
 

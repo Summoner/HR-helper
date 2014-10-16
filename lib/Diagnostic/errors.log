@@ -3,3 +3,20 @@
 [28] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 42 lib.DAL.Candidat - called with 13 bind variables when 12 are needed
 [2014/09/22 14:23:32] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 155 lib.DAL.Candidat - Deleted: 1 candidates with id: 7
 [2014/09/22 14:23:55] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 155 lib.DAL.Candidat - Deleted: 1 candidates with id: 8
+[2014/10/16 15:15:02] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 46 lib.DAL.Candidat - called with 19 bind variables when 18 are needed
+[2014/10/16 15:16:49] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 46 lib.DAL.Candidat - Unknown column 'interview_mail_sent' in 'field list'
+[2014/10/16 15:16:54] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 46 lib.DAL.Candidat - Unknown column 'interview_mail_sent' in 'field list'
+[2014/10/16 15:18:04] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 66 lib.DAL.Candidat - Added 1 candidat
+[2014/10/16 15:29:25] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 187 lib.DAL.Candidat - Deleted: 1 candidates with id: 7
+[2014/10/16 16:19:41] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 52 lib.DAL.Candidat - Added 1 candidat
+[2014/10/16 16:21:02] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 155 lib.DAL.Candidat - Deleted: 1 candidates with id: 8
+[2014/10/16 16:23:59] /home/fanatic/Summoner/HR-helper/lib/Entities/Candidat.pm 34 lib.Entities.Candidat - Invalid parameter 'lib::BLL::Candidates=HASH(0x8e7b2c8)' passed to 'lib::Entities::Candidat' constructor
+[2014/10/16 16:29:54] /home/fanatic/Summoner/HR-helper/lib/Entities/Candidat.pm 34 lib.Entities.Candidat - Invalid parameter 'lib::BLL::Candidates=HASH(0x832d23c)' passed to 'lib::Entities::Candidat' constructor
+[2014/10/16 16:33:29] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 128 lib.DAL.Candidat - called with 16 bind variables when 14 are needed
+[2014/10/16 16:35:38] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 128 lib.DAL.Candidat - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'cv = 'GLOB(0x8a358ec)',
+                            status = '0'
+							WHERE id' at line 15
+[2014/10/16 16:38:25] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 128 lib.DAL.Candidat - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'cv = 'GLOB(0x93518ec)',
+                            status = '0'
+							WHERE id' at line 15
+[2014/10/16 16:40:03] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 145 lib.DAL.Candidat - We have 1 candidates updated with id: 6

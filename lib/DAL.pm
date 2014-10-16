@@ -3,6 +3,12 @@ use strict;
 use warnings;
 use Data::Dumper; 
 
+sub new{	
+	my  $class = shift;
+	my $self = {@_};
+	bless($self,$class);
+	return $self;
+}
 
 sub add {
     my	( $par1 )	= @_;

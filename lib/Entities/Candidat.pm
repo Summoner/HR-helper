@@ -63,4 +63,9 @@ sub prof_exp{$_[0]->{prof_exp} = $_[1] if defined $_[1]; $_[0]->{prof_exp} }
 sub foreign_lang{$_[0]->{foreign_lang} = $_[1] if defined $_[1]; $_[0]->{foreign_lang} }
 sub education{$_[0]->{education} = $_[1] if defined $_[1]; $_[0]->{education} }
 
+sub cv{$_[0]->{cv} = $_[1] if defined $_[1]; $_[0]->{cv} }
+sub status{$_[0]->{status} = $_[1] if defined $_[1]; $_[0]->{status} }
+
+
+
 1;
