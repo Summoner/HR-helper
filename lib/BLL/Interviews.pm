@@ -7,14 +7,6 @@ use lib::Entities::Interview;
 
 use base 'lib::BLL';
 
-#Constructor
-sub new {
-    my $class = shift;
-    my $self = {};
-	bless ($self,$class);    
-    return $self;
-}
-
   sub add{
 
 	my $self = shift;	
@@ -27,8 +19,8 @@ sub new {
 
 sub get_by_id{
 
-	my $self = shift;	
-	my $id = shift;
+    my ( $self,$id ) = @_;
+
 	my $interviews = lib::DAL::Interviews->new();
 	my $interview = $interviews->get_by_id($id);
 	return $interview;
@@ -37,8 +29,8 @@ sub get_by_id{
 sub update_by_id{
 
 	my $self = shift;
-	my $id = shift;	
-	
+    my $id  = shift;
+		
 	my $interview = lib::Entities::Interview->new(@_);
 	if (defined $interview){
 		my $interviews = lib::DAL::Interviews->new();
@@ -49,8 +41,8 @@ sub update_by_id{
 
 sub delete_by_id{
 
-	my $self = shift;	
-	my $id = shift;
+	my ( $self,$id ) = @_;	
+	
 	my $interviews = lib::DAL::Interviews->new();
 	$interviews->delete_by_id($id);
 }

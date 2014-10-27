@@ -6,13 +6,6 @@ use lib::DAL::HRManager;
 
 use base 'lib::BLL';
 
-#Constructor
-sub new {
-    my $class = shift;
-    my $self = {};
-	bless ($self,$class);    
-    return $self;
-}
 
   sub add{
 
@@ -26,8 +19,8 @@ sub new {
 
 sub get_by_id{
 
-	my $self = shift;	
-	my $id = shift;
+	my ( $self,$id ) = @_;	
+	
 	my $hrmanagers = lib::DAL::HRManager->new();
 	my $hrmanager = $hrmanagers->get_by_id($id);
 	return $hrmanager
@@ -47,8 +40,8 @@ sub update_by_id{
 
 sub delete_by_id{
 
-	my $self = shift;	
-	my $id = shift;
+	my ( $self,$id ) = @_;	
+	
 	my $hrmanagers = lib::DAL::HRManager->new();
 	$hrmanagers->delete_by_id($id);
 }

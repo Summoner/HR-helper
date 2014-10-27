@@ -6,8 +6,6 @@ use lib::DAL::Candidat;
 
 use base 'lib::BLL';
 
-
-
   sub add{
 
 	my $self = shift;	
@@ -30,7 +28,7 @@ sub get_by_id{
 sub update_by_id{
 
     my $self = shift;
-    my$id = shift;	
+    my $id = shift;	
 		
 	my $candidat = lib::Entities::Candidat->new(@_);
 		if (defined $candidat){
@@ -60,12 +58,22 @@ sub get_list_candidates_by_status {
     my	($self, $status )	= @_;
     my $candidat = lib::DAL::Candidat->new();
 	my $candidates_list = $candidat->get_list_candidates_by_status($status);
-	return $candidates_list;
+    return $candidates_list;
     
 } ## --- end sub get_list_candidates_by_status
 
+sub get_list_candidates_by_registration_date {
+    my	($self, $date_from,$date_to )	= @_;
+    my $candidat = lib::DAL::Candidat->new();
+	my $candidates_list = $candidat->get_list_candidates_by_registration_date( $date_from,$date_to );
+	return $candidates_list;
+    
+} ## --- end sub get_list_candidates_by_registration_date
 
-
+sub send_letter_to_candidat {
+    my	( $self,$candidat,$letter_text )	= @_;
+    return ;
+} ## --- end sub send_letter_to_candidat
 
 
 1;

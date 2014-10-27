@@ -48,6 +48,7 @@ sub new{
 sub forename{$_[0]->{forename} = $_[1] if defined $_[1]; $_[0]->{forename} }
 
 sub id{$_[0]->{id} = $_[1] if defined $_[1]; $_[0]->{id} }
+sub registration_date{$_[0]->{registration_date} = $_[1] if defined $_[1]; $_[0]->{registration_date} }
 
 sub surname{$_[0]->{surname} = $_[1] if defined $_[1]; $_[0]->{surname} }
 sub age{$_[0]->{age} = $_[1] if defined $_[1]; $_[0]->{age} }

@@ -10,13 +10,6 @@ use Log::Log4perl;
 my $dbh = lib::DB->instance();
 my $log = Log::Log4perl->get_logger(__PACKAGE__);
 
-sub new{	
-	my  $class = shift;
-	my $self = {};
-	bless($self,$class);
-	return $self;
-}
-
 sub add{
 
 	my ($self,$interview) = @_;		
@@ -54,8 +47,7 @@ sub add{
 
 sub get_by_id{
 
-	my $self = shift;
-	my $id = shift;
+	my ($self,$id) = @_;
 	
 	my $sth = $dbh->prepare("SELECT 
 							Interview.id,Interview.date,

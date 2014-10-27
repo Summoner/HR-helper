@@ -10,13 +10,6 @@ use Log::Log4perl;
 my $log = Log::Log4perl->get_logger(__PACKAGE__);
 my $dbh = lib::DB->instance();
 
-sub new{	
-	my  $class = shift;
-	my $self = {@_};
-	bless($self,$class);
-	return $self;
-}
-
 
 sub add{
 
@@ -42,9 +35,8 @@ sub add{
 
 sub get_by_id{
 
-	my $self = shift;
-	my $id = shift;
-	
+	my ($self,$id) = @_;
+		
 	my $sth = $dbh->prepare("SELECT 
 							forename,
 							surname,
@@ -89,11 +81,9 @@ $sth->execute($hrmanager->{forename},
 }
 sub delete_by_id{
 	
-	my $self = shift;
-	my $id = shift;
-	
-	my $sth = $dbh->prepare("DELETE FROM HRManager
-                        WHERE id = ?");
+	my ($self,$id) = @_;
+		
+	my $sth = $dbh->prepare("DELETE FROM HRManager WHERE id = ?");
 	$sth->execute( $id ) || die $log->error("$DBI::errstr");
 	
 	$log->info("Deleted: " . $sth->rows . " HRManagers with id: $id");
@@ -101,9 +91,9 @@ sub delete_by_id{
 }
 
 sub get_list{
-	
-	my $hrmanagers = [];	
+
 	my $self = shift;	
+	my $hrmanagers = [];	
  	
 	my $sth = $dbh->prepare("SELECT
 							id,
@@ -121,7 +111,7 @@ sub get_list{
 			$hrmanager->{phone_number},
 			$hrmanager->{email}) = (@row);
 			push @$hrmanagers,$hrmanager;
-}
+    }
 	$sth->finish();
 	return $hrmanagers;
 }

@@ -168,5 +168,18 @@ sub get_interviews_list {
 } ## --- end sub get_interviews_list
 
 
+sub get_list_candidates_by_registration_date{
+    my	( $self,$date_from,$date_to )	= @_;
+    my $candidat = lib::BLL::Candidates->new();
+    my $candidates = $candidat->get_list_candidates_by_registration_date($date_from,$date_to);
+    return $candidates;
+} ## --- end sub get_candidates_list_by_registration_date
+
+sub get_list_candidates_by_status{
+    my	( $self,$status )	= @_;
+    my $candidat = lib::BLL::Candidates->new();
+    my $candidates = $candidat->get_list_candidates_by_status($status);
+    return $candidates;
+} ## --- end sub get_candidates_list_by_status
 
   1;

@@ -23,7 +23,8 @@ my %candidat1 = (
 	foreign_lang => "English,Russian",
 	education => "IT university Minsk 2004 year",
     cv => $cv,
-    status => 0
+    status => 0,
+    registration_date => "2014-07-21 17:00:50"
 );
 my %candidat2 = (
 	forename => "Alexander",
@@ -38,7 +39,8 @@ my %candidat2 = (
 	expertise_areas => "Oracle,Perl",
 	prof_exp => "10 years",
 	foreign_lang => "English,Russian",
-	education => "IT university Harkov 2004 year"
+	education => "IT university Harkov 2004 year",
+    registration_date => "2014-07-21 17:00:50"
 );
 my %candidat3 = (
 	forename => "Viktor",
@@ -53,7 +55,8 @@ my %candidat3 = (
 	expertise_areas => "SQL,C#",
 	prof_exp => "7 years",
 	foreign_lang => "English,Russian",
-	education => "IT university 2004 year"	
+	education => "IT university 2004 year",
+    registration_date => "2014-07-21 17:00:50"
 );
 my %candidat4 = (
 	forename => "Alex",
@@ -68,7 +71,8 @@ my %candidat4 = (
 	expertise_areas => "Perl,Javascript",
 	prof_exp => "10 years",
 	foreign_lang => "English,Russian",
-	education => "IT university Harkov 2004 year"
+	education => "IT university Harkov 2004 year",
+    registration_date => "2014-07-21 17:00:50"
 );
 
 my %candidat5 = (
@@ -84,7 +88,8 @@ my %candidat5 = (
 	expertise_areas => "Perl,Git,SQL,C#",
 	prof_exp => "7 years",
 	foreign_lang => "English,Russian",
-	education => "IT university Minsk 2004 year"	
+	education => "IT university Minsk 2004 year",
+    registration_date => "2014-07-21 17:00:50"
 );
 my %candidat6 = (
 	forename => "Ivan",
@@ -99,7 +104,8 @@ my %candidat6 = (
 	expertise_areas => "Perl,MySQL",
 	prof_exp => "10 years",
 	foreign_lang => "English,Russian",
-	education => "IT university Harkov 2004 year"
+	education => "IT university Harkov 2004 year",
+    registration_date => "2014-07-21 17:00:50"
 );
 
 my %candidat7 = (
@@ -115,16 +121,17 @@ my %candidat7 = (
 	expertise_areas => "Perl,MySQL",
 	prof_exp => "10 years",
 	foreign_lang => "English,Russian",
-	education => "IT university Harkov 2004 year"
+	education => "IT university Harkov 2004 year",
+    registration_date => "2014-07-21 17:00:50"
 );
 
 
 my $p = lib::Portal->new();
-#$p->add_candidat(%candidat1);
-#$p->add_candidat(%candidat2);
-#$p->add_candidat(%candidat3);
-#$p->add_candidat(%candidat4);
-#$p->add_candidat(%candidat5);
 $p->add_candidat(%candidat1);
-
+$p->add_candidat(%candidat2);
+$p->add_candidat(%candidat3);
+$p->add_candidat(%candidat4);
+$p->add_candidat(%candidat5);
+$p->add_candidat(%candidat6);
+$p->add_candidat(%candidat7);
 

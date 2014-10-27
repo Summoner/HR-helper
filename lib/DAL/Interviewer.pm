@@ -10,25 +10,17 @@ use Log::Log4perl;
 my $log = Log::Log4perl->get_logger(__PACKAGE__);
 my $dbh = lib::DB->instance();
 
-sub new{	
-	my  $class = shift;
-	my $self = {};
-	bless($self,$class);
-	return $self;
-}
-
-
 sub add{
 
 	my ($self,$interviewer) = @_;		
 
 	my $sth = $dbh->prepare("INSERT INTO Interviewer
-                       (forename, 
-						surname,
-						phone_number,
-						email )
-                        values
-                       (?,?,?,?)");
+                           (forename, 
+	    					surname,
+		    				phone_number,
+			    			email )
+                            values
+                           (?,?,?,?)");
 	$sth->execute($interviewer->{forename},
 					$interviewer->{surname},
 					$interviewer->{phone_number},
@@ -42,9 +34,8 @@ sub add{
 
 sub get_by_id{
 
-	my $self = shift;
-	my $id = shift;
-	
+	my ( $self,$id ) = @_;
+		
 	my $sth = $dbh->prepare("SELECT 
 							forename,
 							surname,
@@ -67,6 +58,7 @@ sub get_by_id{
 	$sth->finish();
 	return $interviewer;
 }
+
 sub update_by_id{
 	
 	my ($self,$id,$interviewer) = @_;
@@ -87,11 +79,11 @@ $sth->execute($interviewer->{forename},
 		$log->info("We have " . $sth->rows . " Interviewers updated with id: $id");
 		$sth->finish();
 }
+
 sub delete_by_id{
 	
-	my $self = shift;
-	my $id = shift;
-	
+	my ($self,$id) = @_;
+		
 	my $sth = $dbh->prepare("DELETE FROM Interviewer
                         WHERE id = ?");
 	$sth->execute( $id ) || die $log->error("$DBI::errstr");
@@ -100,9 +92,9 @@ sub delete_by_id{
 }
 
 sub get_list{
-	
-	my $interviewers = [];	
+
 	my $self = shift;
+	my $interviewers = [];	
 	
  	my $sth = $dbh->prepare("SELECT
 							id,
@@ -120,7 +112,7 @@ sub get_list{
 			$interviewer->{phone_number},
 			$interviewer->{email}) = (@row);
 			push @$interviewers,$interviewer;
-}
+    }
 	$sth->finish();
     return $interviewers;
 }

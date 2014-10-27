@@ -20,3 +20,47 @@
                             status = '0'
 							WHERE id' at line 15
 [2014/10/16 16:40:03] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 145 lib.DAL.Candidat - We have 1 candidates updated with id: 6
+[2014/10/24 16:00:58] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 161 lib.DAL.Candidat - Deleted: 1 candidates with id: 1
+[2014/10/24 16:00:58] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 161 lib.DAL.Candidat - Deleted: 1 candidates with id: 2
+[2014/10/24 16:00:58] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 161 lib.DAL.Candidat - Deleted: 1 candidates with id: 3
+[2014/10/24 16:00:58] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 161 lib.DAL.Candidat - Deleted: 1 candidates with id: 4
+[2014/10/24 16:00:58] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 161 lib.DAL.Candidat - Deleted: 1 candidates with id: 5
+[2014/10/24 16:00:58] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 161 lib.DAL.Candidat - Deleted: 1 candidates with id: 6
+[2014/10/24 16:05:05] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 54 lib.DAL.Candidat - Added 1 candidat
+[2014/10/24 16:05:05] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 54 lib.DAL.Candidat - Added 1 candidat
+[2014/10/24 16:05:05] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 54 lib.DAL.Candidat - Added 1 candidat
+[2014/10/24 16:05:05] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 54 lib.DAL.Candidat - Added 1 candidat
+[2014/10/24 16:05:05] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 54 lib.DAL.Candidat - Added 1 candidat
+[2014/10/24 16:05:06] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 54 lib.DAL.Candidat - Added 1 candidat
+[2014/10/24 16:05:06] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 54 lib.DAL.Candidat - Added 1 candidat
+[2014/10/24 16:37:34] /home/fanatic/Summoner/HR-helper/lib/Entities/Candidat.pm 24 lib.Entities.Candidat - Please enter only letters with length from 3 to 10 for marital status, Please enter only digits with length from 1 to 15 for phone number, Please enter only digits with length from 1 to 15 for children number, Please enter valid email address, Please enter only letters with length from 3 to 10 for citizenship, Please enter only letters with length from 3 to 10 for forename, Please enter only letters with length from 3 to 10 for surname, Please enter only digits with length from 1 to 2 for age
+[2014/10/24 16:37:34] /home/fanatic/Summoner/HR-helper/lib/Entities/Candidat.pm 24 lib.Entities.Candidat - Please enter only letters with length from 3 to 10 for citizenship, Please enter only digits with length from 1 to 15 for children number, Please enter valid email address, Please enter only letters with length from 3 to 10 for marital status, Please enter only digits with length from 1 to 15 for phone number, Please enter only digits with length from 1 to 2 for age, Please enter only letters with length from 3 to 10 for surname, Please enter only letters with length from 3 to 10 for forename
+[2014/10/24 16:37:34] /home/fanatic/Summoner/HR-helper/lib/Entities/Candidat.pm 24 lib.Entities.Candidat - Please enter only letters with length from 3 to 10 for marital status, Please enter only digits with length from 1 to 15 for phone number, Please enter only letters with length from 3 to 10 for citizenship, Please enter only digits with length from 1 to 15 for children number, Please enter valid email address, Please enter only letters with length from 3 to 10 for forename, Please enter only digits with length from 1 to 2 for age, Please enter only letters with length from 3 to 10 for surname
+[2014/10/24 16:37:34] /home/fanatic/Summoner/HR-helper/lib/Entities/Candidat.pm 24 lib.Entities.Candidat - Please enter only letters with length from 3 to 10 for forename, Please enter only letters with length from 3 to 10 for surname, Please enter only digits with length from 1 to 2 for age, Please enter only digits with length from 1 to 15 for phone number, Please enter only letters with length from 3 to 10 for marital status, Please enter valid email address, Please enter only digits with length from 1 to 15 for children number, Please enter only letters with length from 3 to 10 for citizenship
+[2014/10/24 16:37:34] /home/fanatic/Summoner/HR-helper/lib/Entities/Candidat.pm 24 lib.Entities.Candidat - Please enter only letters with length from 3 to 10 for surname, Please enter only digits with length from 1 to 2 for age, Please enter only letters with length from 3 to 10 for forename, Please enter valid email address, Please enter only digits with length from 1 to 15 for children number, Please enter only letters with length from 3 to 10 for citizenship, Please enter only digits with length from 1 to 15 for phone number, Please enter only letters with length from 3 to 10 for marital status
+[2014/10/24 16:37:34] /home/fanatic/Summoner/HR-helper/lib/Entities/Candidat.pm 24 lib.Entities.Candidat - Please enter valid email address, Please enter only digits with length from 1 to 15 for children number, Please enter only letters with length from 3 to 10 for citizenship, Please enter only digits with length from 1 to 15 for phone number, Please enter only letters with length from 3 to 10 for marital status, Please enter only letters with length from 3 to 10 for surname, Please enter only digits with length from 1 to 2 for age, Please enter only letters with length from 3 to 10 for forename
+[2014/10/24 16:37:34] /home/fanatic/Summoner/HR-helper/lib/Entities/Candidat.pm 24 lib.Entities.Candidat - Please enter only digits with length from 1 to 15 for children number, Please enter valid email address, Please enter only letters with length from 3 to 10 for citizenship, Please enter only letters with length from 3 to 10 for marital status, Please enter only digits with length from 1 to 15 for phone number, Please enter only letters with length from 3 to 10 for surname, Please enter only digits with length from 1 to 2 for age, Please enter only letters with length from 3 to 10 for forename
+[2014/10/24 16:43:09] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 7
+[2014/10/24 16:43:09] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 8
+[2014/10/24 16:43:09] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 9
+[2014/10/24 16:43:09] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 10
+[2014/10/24 16:43:09] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 11
+[2014/10/24 16:43:09] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 12
+[2014/10/24 16:43:10] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 13
+[2014/10/27 13:09:43] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 161 lib.DAL.Candidat - Deleted: 1 candidates with id: 13
+[2014/10/27 13:11:25] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 7
+[2014/10/27 13:42:20] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 7
+[2014/10/27 13:42:20] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 8
+[2014/10/27 13:42:20] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 9
+[2014/10/27 13:42:20] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 10
+[2014/10/27 13:42:20] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 11
+[2014/10/27 13:42:20] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 12
+[2014/10/27 13:42:20] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 0 candidates updated with id: 13
+[2014/10/27 13:45:42] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 7
+[2014/10/27 13:45:42] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 8
+[2014/10/27 13:45:42] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 9
+[2014/10/27 13:45:42] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 10
+[2014/10/27 13:45:42] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 11
+[2014/10/27 13:45:42] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 12
+[2014/10/27 13:45:42] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 0 candidates updated with id: 13
+[2014/10/27 13:57:03] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 8
