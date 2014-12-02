@@ -34,22 +34,22 @@ sub add{
                         registration_date)
                         values
                        (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-	$sth->execute($candidat->{forename},
-					$candidat->{surname},
-					$candidat->{age},
-					$candidat->{citizenship},
-					$candidat->{marital_status},
-					$candidat->{children},
-					$candidat->{phone_number},
-					$candidat->{email},
-					$candidat->{position_apply},
-					$candidat->{expertise_areas},
-					$candidat->{prof_exp},
-					$candidat->{foreign_lang},
-					$candidat->{education},
-                   	$candidat->{cv},
-                	$candidat->{status}, 
-                    $candidat->{registration_date} ) || die $log->error("$DBI::errstr");
+	$sth->execute($candidat->forename,
+					$candidat->surname,
+					$candidat->age,
+					$candidat->citizenship,
+					$candidat->marital_status,
+					$candidat->children,
+					$candidat->phone_number,
+					$candidat->email,
+					$candidat->position_apply,
+					$candidat->expertise_areas,
+					$candidat->prof_exp,
+					$candidat->foreign_lang,
+					$candidat->education,
+                   	$candidat->cv,
+                	$candidat->status, 
+                    $candidat->registration_date ) || die $log->error("$DBI::errstr");
 	
 	$log->info("Added 1 candidat");
 	$sth->finish();
@@ -59,7 +59,8 @@ sub get_by_id{
 
 	my ($self,$id) = @_;
 		
-	my $sth = $dbh->prepare("SELECT 
+	my $sth = $dbh->prepare("SELECT
+                            id,
 							forename,
 							surname,
 							age,
@@ -87,8 +88,10 @@ sub get_by_id{
 	}
 	
 	my @row = $sth->fetchrow_array();
-	my $candidat = lib::Entities::Candidat->new();   	
-   		   ($candidat->{forename},
+	my $candidat = lib::Entities::Candidat->new();
+    
+   		  ( $candidat->{id},
+            $candidat->{forename},
 			$candidat->{surname},
 			$candidat->{age},
 			$candidat->{citizenship},
@@ -130,22 +133,22 @@ sub update_by_id{
                             registration_date = ?
 							WHERE id= ?");
 
-$sth->execute($candidat->{forename},
-			$candidat->{surname},
-			$candidat->{age},
-			$candidat->{citizenship},
-			$candidat->{marital_status},
-			$candidat->{children},
-			$candidat->{phone_number},
-			$candidat->{email},
-			$candidat->{position_apply},
-			$candidat->{expertise_areas},
-			$candidat->{prof_exp},
-			$candidat->{foreign_lang},
-			$candidat->{education},
-            $candidat->{cv},
-            $candidat->{status}, 
-            $candidat->{registration_date},
+$sth->execute($candidat->forename,
+			$candidat->surname,
+			$candidat->age,
+			$candidat->citizenship,
+			$candidat->marital_status,
+			$candidat->children,
+			$candidat->phone_number,
+			$candidat->email,
+			$candidat->position_apply,
+			$candidat->expertise_areas,
+			$candidat->prof_exp,
+			$candidat->foreign_lang,
+			$candidat->education,
+            $candidat->cv,
+            $candidat->status, 
+            $candidat->registration_date,
 			$id )|| die $log->error("$DBI::errstr");
 
 		$log->info("We have " . $sth->rows . " candidates updated with id: $id");
@@ -242,7 +245,7 @@ sub get_list_candidates_by_status{
 		
 	while (my @row = $sth->fetchrow_array()) {
 			my $candidat = lib::Entities::Candidat->new();   	
-   		   ($candidat->{id},
+   		  ( $candidat->{id},
 			$candidat->{forename},
 			$candidat->{surname},
 			$candidat->{age},
@@ -295,8 +298,9 @@ sub get_list_candidates_by_registration_date{
 	$sth->execute( $date_from,$date_to )|| die $log->error("$DBI::errstr");
 		
 	while (my @row = $sth->fetchrow_array()) {
-			my $candidat = lib::Entities::Candidat->new();   	
-   		   ($candidat->{id},
+			my $candidat = lib::Entities::Candidat->new();
+
+   		  ( $candidat->{id},
 			$candidat->{forename},
 			$candidat->{surname},
 			$candidat->{age},

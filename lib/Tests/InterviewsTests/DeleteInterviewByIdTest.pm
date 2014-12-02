@@ -12,7 +12,7 @@ use lib::Portal;
 my $p = lib::Portal->new();
 
 
-$p->delete_interview(11);
+$p->delete_interview(3);
 #$p->delete_interview_by_id(3);
 #$p->delete_interview_by_id(4);
 #$p->delete_interview_by_id(5);

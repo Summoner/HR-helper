@@ -64,3 +64,20 @@
 [2014/10/27 13:45:42] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 12
 [2014/10/27 13:45:42] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 0 candidates updated with id: 13
 [2014/10/27 13:57:03] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 151 lib.DAL.Candidat - We have 1 candidates updated with id: 8
+[2014/12/02 11:36:00] /home/fanatic/Summoner/HR-helper/lib/BLL/Candidates.pm 108 lib.BLL.Candidates - Message sent successfully
+[2014/12/02 11:40:34] /home/fanatic/Summoner/HR-helper/lib/BLL/Candidates.pm 108 lib.BLL.Candidates - Message sent successfully
+[2014/12/02 11:49:14] /home/fanatic/Summoner/HR-helper/lib/BLL/Candidates.pm 108 lib.BLL.Candidates - Message sent successfully
+[2014/12/02 11:52:56] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 54 lib.DAL.Candidat - Added 1 candidat
+[2014/12/02 13:02:38] /home/fanatic/Summoner/HR-helper/lib/DAL/HRManager.pm 31 lib.DAL.HRManager - Added 1 HRmanager
+[2014/12/02 15:30:10] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 54 lib.DAL.Candidat - Added 1 candidat
+[2014/12/02 15:30:42] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 162 lib.DAL.Candidat - Deleted: 1 candidates with id: 13
+[2014/12/02 15:30:42] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 162 lib.DAL.Candidat - Deleted: 1 candidates with id: 14
+[2014/12/02 15:37:51] /home/fanatic/Summoner/HR-helper/lib/BLL/Candidates.pm 108 lib.BLL.Candidates - Message sent successfully
+[2014/12/02 15:44:51] /home/fanatic/Summoner/HR-helper/lib/DAL/Candidat.pm 152 lib.DAL.Candidat - We have 1 candidates updated with id: 8
+[2014/12/02 16:06:21] /home/fanatic/Summoner/HR-helper/lib/DAL/Interview.pm 43 lib.DAL.Interviews - Added 1 Interview
+[2014/12/02 16:07:41] /home/fanatic/Summoner/HR-helper/lib/DAL/Interview.pm 184 lib.DAL.Interviews - Deleted: 1 Interview with id: 1
+[2014/12/02 16:11:39] /home/fanatic/Summoner/HR-helper/lib/DAL/Interview.pm 43 lib.DAL.Interviews - Added 1 Interview
+[2014/12/02 16:13:11] /home/fanatic/Summoner/HR-helper/lib/DAL/Interview.pm 43 lib.DAL.Interviews - Added 1 Interview
+[2014/12/02 16:19:21] /home/fanatic/Summoner/HR-helper/lib/DAL/Interview.pm 185 lib.DAL.Interviews - Deleted: 1 Interview with id: 2
+[2014/12/02 16:19:31] /home/fanatic/Summoner/HR-helper/lib/DAL/Interview.pm 185 lib.DAL.Interviews - Deleted: 1 Interview with id: 3
+[2014/12/02 16:19:54] /home/fanatic/Summoner/HR-helper/lib/DAL/Interview.pm 43 lib.DAL.Interviews - Added 1 Interview

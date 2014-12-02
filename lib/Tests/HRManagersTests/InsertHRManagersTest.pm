@@ -20,9 +20,15 @@ my %hrmanager2 = (
 	email => "petrova\@gmail.com"
 );
 my %hrmanager3 = (
+
+	forename => "Eugenia",
+	surname => "Svetlova",
+	phone_number => "375297639171",
+	email => "svetlova\@gmail.com"	
+
 );
 my $p = lib::Portal->new();
-$p->add_hrmanager(%hrmanager1);
+$p->add_hrmanager(%hrmanager3);
 #$p->add_hrmanager(%hrmanager2);
 
 

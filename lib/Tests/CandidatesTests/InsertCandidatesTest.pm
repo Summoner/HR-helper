@@ -128,10 +128,10 @@ my %candidat7 = (
 
 my $p = lib::Portal->new();
 $p->add_candidat(%candidat1);
-$p->add_candidat(%candidat2);
-$p->add_candidat(%candidat3);
-$p->add_candidat(%candidat4);
-$p->add_candidat(%candidat5);
-$p->add_candidat(%candidat6);
-$p->add_candidat(%candidat7);
+#$p->add_candidat(%candidat2);
+#$p->add_candidat(%candidat3);
+#$p->add_candidat(%candidat4);
+#$p->add_candidat(%candidat5);
+#$p->add_candidat(%candidat6);
+#$p->add_candidat(%candidat7);
 

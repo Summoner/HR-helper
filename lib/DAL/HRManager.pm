@@ -22,10 +22,10 @@ sub add{
 						email )
                         values
                        (?,?,?,?)");
-	$sth->execute($hrmanager->{forename},
-					$hrmanager->{surname},
-					$hrmanager->{phone_number},
-					$hrmanager->{email}
+	$sth->execute($hrmanager->forename,
+					$hrmanager->surname,
+					$hrmanager->phone_number,
+					$hrmanager->email
 	) || die $log->error("$DBI::errstr");
 	
 	$log->info("Added 1 HRmanager");
@@ -37,7 +37,8 @@ sub get_by_id{
 
 	my ($self,$id) = @_;
 		
-	my $sth = $dbh->prepare("SELECT 
+	my $sth = $dbh->prepare("SELECT
+                            id,
 							forename,
 							surname,
 							phone_number,
@@ -52,10 +53,11 @@ sub get_by_id{
 	
 	my @row = $sth->fetchrow_array();
 	my $hrmanager = lib::Entities::HRManager->new();   	
-   		   ($hrmanager->{forename},
+   		  ( $hrmanager->{id},
+            $hrmanager->{forename},
 			$hrmanager->{surname},
 			$hrmanager->{phone_number},
-			$hrmanager->{email}) = (@row);
+			$hrmanager->{email} ) = (@row);
 	$sth->finish();
 	return $hrmanager;
 }
@@ -70,10 +72,10 @@ sub update_by_id{
 							email = ?
 							WHERE id= ?");
 
-$sth->execute($hrmanager->{forename},
-			$hrmanager->{surname},
-			$hrmanager->{phone_number},
-			$hrmanager->{email},
+$sth->execute($hrmanager->forename,
+			$hrmanager->surname,
+			$hrmanager->phone_number,
+			$hrmanager->email,
 			$id ) || die $log->error("$DBI::errstr");
 		
 		$log->info("We have " . $sth->rows . " HRManagers updated with id: $id");
@@ -109,7 +111,7 @@ sub get_list{
 			$hrmanager->{forename},
 			$hrmanager->{surname},
 			$hrmanager->{phone_number},
-			$hrmanager->{email}) = (@row);
+			$hrmanager->{email} ) = (@row);
 			push @$hrmanagers,$hrmanager;
     }
 	$sth->finish();

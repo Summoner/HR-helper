@@ -182,4 +182,12 @@ sub get_list_candidates_by_status{
     return $candidates;
 } ## --- end sub get_candidates_list_by_status
 
+sub send_letter_to_candidat{
+    my	( $self,$from, $subject,$candidat,$message )	= @_;
+    my $b = lib::BLL::Candidates->new();
+    $b->send_letter_to_candidat( $from,$subject,$candidat,$message );
+    
+} ## --- end sub get_candidates_list_by_status
+
+
   1;

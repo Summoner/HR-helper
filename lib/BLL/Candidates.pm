@@ -3,10 +3,31 @@ use strict;
 use warnings;
 use Data::Dumper; 
 use lib::DAL::Candidat;
+use Log::Log4perl;
+
+my $log = Log::Log4perl->get_logger(__PACKAGE__);
 
 use base 'lib::BLL';
 
-  sub add{
+#Candidates can have status:
+# 0 - Just applayed;
+# 1 - Rejected by HR
+# 2 - Approved by HR
+# 3 - Rejected by developer
+# 4 - Approved by developer
+# 5 - Arranged first interview
+# 6 - Rejected after first interview
+# 7 - Approved after first interview
+# 8 - Arranged second interview
+# 9 - Rejected after second interview
+# 10 - Arranged third interview
+# 11 - Rejected after third interview
+# 12 - Approved after third interview
+# 13 - Sent job offer
+# 14 - Offer accepted
+# 15 - Offer rejected
+
+sub add{
 
 	my $self = shift;	
 	my $candidat = lib::Entities::Candidat->new(@_);
@@ -71,8 +92,21 @@ sub get_list_candidates_by_registration_date {
 } ## --- end sub get_list_candidates_by_registration_date
 
 sub send_letter_to_candidat {
-    my	( $self,$candidat,$letter_text )	= @_;
-    return ;
+    my	($self,$from,$subject,$candidat,$message )	= @_;
+
+    my $to = $candidat->email;
+
+    open( MAIL,"|/usr/sbin/sendmail -t" );
+
+    print MAIL "To: $to\n";
+    print MAIL "From: $from\n";
+    print MAIL "Subject: $subject\n\n";
+
+    print MAIL $message;
+    close( MAIL );
+
+    $log->info("Message sent successfully");
+
 } ## --- end sub send_letter_to_candidat
 
 

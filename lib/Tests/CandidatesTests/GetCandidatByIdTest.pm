@@ -9,7 +9,7 @@ use lib::Portal;
 
 my $p = lib::Portal->new();
 
-my $candidat = $p->get_candidat(10);
-print $candidat->{surname};
+my $candidat = $p->get_candidat( 10 );
+print $candidat->{ surname };
 
 

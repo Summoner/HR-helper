@@ -21,10 +21,10 @@ sub add{
 			    			email )
                             values
                            (?,?,?,?)");
-	$sth->execute($interviewer->{forename},
-					$interviewer->{surname},
-					$interviewer->{phone_number},
-					$interviewer->{email}
+	$sth->execute($interviewer->forename,
+					$interviewer->surname,
+					$interviewer->phone_number,
+					$interviewer->email
 	) || die $log->error("$DBI::errstr");
 	
 	$log->info("Added 1 Interviewer");
@@ -35,8 +35,9 @@ sub add{
 sub get_by_id{
 
 	my ( $self,$id ) = @_;
-		
+
 	my $sth = $dbh->prepare("SELECT 
+                            id,
 							forename,
 							surname,
 							phone_number,
@@ -50,11 +51,13 @@ sub get_by_id{
 	}
 	
 	my @row = $sth->fetchrow_array();
-	my $interviewer = lib::Entities::Interviewer->new();   	
-   		   ($interviewer->{forename},
+	my $interviewer = lib::Entities::Interviewer->new();
+
+   	     (  $interviewer->{id},
+            $interviewer->{forename},
 			$interviewer->{surname},
 			$interviewer->{phone_number},
-			$interviewer->{email}) = (@row);
+			$interviewer->{email} ) = (@row);
 	$sth->finish();
 	return $interviewer;
 }
@@ -70,10 +73,10 @@ sub update_by_id{
 							email = ?
 							WHERE id= ?");
 
-$sth->execute($interviewer->{forename},
-			$interviewer->{surname},
-			$interviewer->{phone_number},
-			$interviewer->{email},
+$sth->execute($interviewer->forename,
+			$interviewer->surname,
+			$interviewer->phone_number,
+			$interviewer->email,
 			$id ) || die $log->error("$DBI::errstr");
 
 		$log->info("We have " . $sth->rows . " Interviewers updated with id: $id");
@@ -110,7 +113,7 @@ sub get_list{
 			$interviewer->{forename},
 			$interviewer->{surname},
 			$interviewer->{phone_number},
-			$interviewer->{email}) = (@row);
+			$interviewer->{email} ) = (@row);
 			push @$interviewers,$interviewer;
     }
 	$sth->finish();

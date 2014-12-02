@@ -14,10 +14,10 @@ sub add{
 
 	my ($self,$interview) = @_;		
 	
-	$interview->{hrmanager}->{id} = 1 unless defined $interview->{hrmanager}->{id};
-	$interview->{interviewer1}->{id} = 1 unless defined $interview->{interviewer1}->{id};
-	$interview->{interviewer2}->{id} = 1 unless defined $interview->{interviewer2}->{id};
-	$interview->{interviewer3}->{id} = 1 unless defined $interview->{interviewer3}->{id};
+	$interview->hrmanager->id( 1 ) unless defined $interview->{hrmanager}->{id};
+	$interview->interviewer1->id( 1 ) unless defined $interview->{interviewer1}->{id};
+	$interview->interviewer2->id( 1 ) unless defined $interview->{interviewer2}->{id};
+	$interview->interviewer3->id( 1 ) unless defined $interview->{interviewer3}->{id};
 	my $sth = $dbh->prepare("INSERT INTO Interview
                        (date, 
 						Interviewer1,
@@ -30,13 +30,13 @@ sub add{
                         values
                        (?,?,?,?,?,?,?,?)");
 	$sth->execute($interview->{date},
-					$interview->{interviewer1}->{id},
-					$interview->{interviewer2}->{id},
-					$interview->{interviewer3}->{id},
-					$interview->{result},
-					$interview->{process_description},
-					$interview->{candidat}->{id},
-					$interview->{hrmanager}->{id}	
+					$interview->interviewer1->id,
+					$interview->interviewer2->id,
+					$interview->interviewer3->id,
+					$interview->result,
+					$interview->process_description,
+					$interview->candidat->id,
+					$interview->hrmanager->id	
 				
 	)|| die $log->error("$DBI::errstr");	
 	
@@ -50,7 +50,8 @@ sub get_by_id{
 	my ($self,$id) = @_;
 	
 	my $sth = $dbh->prepare("SELECT 
-							Interview.id,Interview.date,
+							Interview.id,
+                            Interview.date,
 							i1.id,i1.forename,i1.surname,i1.phone_number,i1.email,
 							i2.id,i2.forename,i2.surname,i2.phone_number,i2.email,
 							i3.id,i3.forename,i3.surname,i3.phone_number,i3.email,
@@ -102,7 +103,7 @@ sub get_by_id{
 	
 	my @row = $sth->fetchrow_array();
 	my $interview = lib::Entities::Interview->new();   	
-   		   ($interview->{id},
+   		  ( $interview->{id},
 			$interview->{date},
 			$interview->{interviewer1}->{id},
 			$interview->{interviewer1}->{forename},
@@ -127,7 +128,7 @@ sub get_by_id{
 			$interview->{candidat}->{age},
 			$interview->{candidat}->{children},
 			$interview->{candidat}->{citizenship},
-			$interview->{candidat}->{education},
+			$interview->{candidat}->{educaion},
 			$interview->{candidat}->{email},
 			$interview->{candidat}->{expertise_areas},
 			$interview->{candidat}->{foreign_lang},
@@ -139,8 +140,8 @@ sub get_by_id{
 			$interview->{hrmanager}->{forename},
 			$interview->{hrmanager}->{surname},
 			$interview->{hrmanager}->{phone_number},
-			$interview->{hrmanager}->{email}
-								) = (@row);
+			$interview->{hrmanager}->{email} ) = (@row);
+
 	$sth->finish();
 	return $interview;
 }
@@ -159,14 +160,14 @@ sub update_by_id{
 							HRManager = ?
 							WHERE id= ?");
 
-	  $sth->execute($interview->{date},
-					$interview->{interviewer1}->{id},
-					$interview->{interviewer2}->{id},
-					$interview->{interviewer3}->{id},
-					$interview->{result},
-					$interview->{process_description},
-					$interview->{candidat}->{id},
-					$interview->{hrmanager}->{id},
+	  $sth->execute($interview->date,
+					$interview->interviewer1->id,
+					$interview->interviewer2->id,
+					$interview->interviewer3->id,
+					$interview->result,
+					$interview->process_description,
+					$interview->candidat->id,
+					$interview->hrmanager->id,
 					$id					
 	) || die $log->error("$DBI::errstr");
 		
@@ -236,7 +237,8 @@ sub get_list{
 		
 	while (my @row = $sth->fetchrow_array()) {
 			my $interview = lib::Entities::Interview->new();   	
-   		   ($interview->{id},
+   		  
+          ( $interview->{id},
 			$interview->{date},
 			$interview->{interviewer1}->{id},
 			$interview->{interviewer1}->{forename},
@@ -261,7 +263,7 @@ sub get_list{
 			$interview->{candidat}->{age},
 			$interview->{candidat}->{children},
 			$interview->{candidat}->{citizenship},
-			$interview->{candidat}->{education},
+			$interview->{candidat}->{educaion},
 			$interview->{candidat}->{email},
 			$interview->{candidat}->{expertise_areas},
 			$interview->{candidat}->{foreign_lang},
@@ -273,7 +275,8 @@ sub get_list{
 			$interview->{hrmanager}->{forename},
 			$interview->{hrmanager}->{surname},
 			$interview->{hrmanager}->{phone_number},
-			$interview->{hrmanager}->{email}) = (@row);
+			$interview->{hrmanager}->{email} ) = (@row);
+
 			push @$interviews,$interview;
    }
 	$sth->finish();

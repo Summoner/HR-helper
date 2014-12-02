@@ -13,6 +13,7 @@ my $p = lib::Portal->new();
 #$p->delete_candidat(4);
 #$p->delete_candidat(5);
 $p->delete_candidat(13);
+$p->delete_candidat(14);
 
 
 
