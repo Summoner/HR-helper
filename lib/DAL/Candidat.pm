@@ -83,8 +83,7 @@ sub get_by_id{
 
         if ($sth->rows >1 || $sth->rows == 0){
 		
-            $log->info("We have " . $sth->rows . " candidates with id: $id");
-            
+            $log->info("We have " . $sth->rows . " candidates with id: $id");            
         }
 	
         my @row = $sth->fetchrow_array();
@@ -113,57 +112,57 @@ sub get_by_id{
 }
 sub update_by_id{
 	
-	my ($self,$id,$candidat) = @_;	
+    my ($self,$id,$candidat) = @_;	
 
-	my $sth = $dbh->prepare("UPDATE Candidat
-                        	SET forename = ?,
-							surname = ?,
-							age = ?,
-							citizenship = ?,
-							marital_status = ?,
-							children = ?,
-							phone_number = ?,
-							email = ?,
-							position_apply = ?,
-							expertise_areas = ?,
-							prof_exp = ?,
-							foreign_lang = ?,
-							education = ?,
-                            cv = ?,
-                            status = ?,
-                            registration_date = ?
-							WHERE id= ?");
-# Check formatting (set up automatic transform tab to spaces)
-$sth->execute($candidat->forename,
-			$candidat->surname,
-			$candidat->age,
-			$candidat->citizenship,
-			$candidat->marital_status,
-			$candidat->children,
-			$candidat->phone_number,
-			$candidat->email,
-			$candidat->position_apply,
-			$candidat->expertise_areas,
-			$candidat->prof_exp,
-			$candidat->foreign_lang,
-			$candidat->education,
-            $candidat->cv,
-            $candidat->status, 
-            $candidat->registration_date,
-			$id )|| die $log->error("$DBI::errstr");
+    my $sth = $dbh->prepare("UPDATE Candidat
+                                SET forename = ?,
+                                    surname = ?,
+                                    age = ?,
+                                    citizenship = ?,
+                                    marital_status = ?,
+                                    children = ?,
+                                    phone_number = ?,
+                                    email = ?,
+                                    position_apply = ?,
+                                    expertise_areas = ?,
+                                    prof_exp = ?,
+                                    foreign_lang = ?,
+                                    education = ?,
+                                    cv = ?,
+                                    status = ?,
+                                    registration_date = ?
+                                    WHERE id= ?");
 
-		$log->info("We have " . $sth->rows . " candidates updated with id: $id");
-		$sth->finish();
+    $sth->execute(  $candidat->forename,
+                    $candidat->surname,
+                    $candidat->age,
+                    $candidat->citizenship,
+                    $candidat->marital_status,
+                    $candidat->children,
+                    $candidat->phone_number,
+                    $candidat->email,
+                    $candidat->position_apply,
+                    $candidat->expertise_areas,
+                    $candidat->prof_exp,
+                    $candidat->foreign_lang,
+                    $candidat->education,
+                    $candidat->cv,
+                    $candidat->status, 
+                    $candidat->registration_date,
+                    $id )|| die $log->error("$DBI::errstr");
+
+    $log->info("We have " . $sth->rows . " candidates updated with id: $id");
+    $sth->finish();
 }
 sub delete_by_id{
 	
-	my ($self,$id) = @_;
+    my ($self,$id) = @_;
 		
-	my $sth = $dbh->prepare("DELETE FROM Candidat WHERE id = ?");
-	$sth->execute( $id ) || die $log->error("$DBI::errstr");
+    my $sth = $dbh->prepare("DELETE FROM Candidat WHERE id = ?");
+        $sth->execute( $id ) || die $log->error("$DBI::errstr");
 	
-	$log->info("Deleted: " . $sth->rows . " candidates with id: $id");
-	$sth->finish();
+    $log->info("Deleted: " . $sth->rows . " candidates with id: $id");
+    $sth->finish();
 }
 
 sub get_list{
