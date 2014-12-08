@@ -57,58 +57,59 @@ sub add{
 
 sub get_by_id{
 
-	my ($self,$id) = @_;
+    my ($self,$id) = @_;
 		
-	my $sth = $dbh->prepare("SELECT
-                            id,
-							forename,
-							surname,
-							age,
-							citizenship,
-							marital_status,
-							children,
-							phone_number,
-							email,
-							position_apply,
-							expertise_areas,
-							prof_exp,
-							foreign_lang,
-							education,
-                            cv,
-                            status,
-                            registration_date
-                            FROM Candidat WHERE id=?");
-	$sth->execute( $id ) || die $log->error("$DBI::errstr");
+    my $sth = $dbh->prepare("SELECT
+                                id,
+                                forename,
+                                surname,
+                                age,
+                                citizenship,
+                                marital_status,
+                                children,
+                                phone_number,
+                                email,
+                                position_apply,
+                                expertise_areas,
+                                prof_exp,
+                                foreign_lang,
+                                education,
+                                cv,
+                                status,
+                                registration_date
+                                FROM Candidat WHERE id=?");
+        $sth->execute( $id ) || die $log->error("$DBI::errstr");
 
 
-	if ($sth->rows >1 || $sth->rows == 0){
+        if ($sth->rows >1 || $sth->rows == 0){
 		
-		$log->info("We have " . $sth->rows . " candidates with id: $id");
-		return;
-	}
+            $log->info("We have " . $sth->rows . " candidates with id: $id");
+            
+        }
 	
-	my @row = $sth->fetchrow_array();
-	my $candidat = lib::Entities::Candidat->new();
+        my @row = $sth->fetchrow_array();
+        my $candidat = lib::Entities::Candidat->new();
     
-   		  ( $candidat->{id},
-            $candidat->{forename},
-			$candidat->{surname},
-			$candidat->{age},
-			$candidat->{citizenship},
-			$candidat->{marital_status},
-			$candidat->{children},
-			$candidat->{phone_number},
-			$candidat->{email},
-			$candidat->{position_apply},
-			$candidat->{expertise_areas},
-			$candidat->{prof_exp},
-			$candidat->{foreign_lang},
-			$candidat->{education},
-            $candidat->{cv},
-            $candidat->{status},
-            $candidat->{registration_date} ) = (@row);
-	$sth->finish();
-	return $candidat;
+      ( $candidat->{id},
+        $candidat->{forename},
+        $candidat->{surname},
+        $candidat->{age},
+        $candidat->{citizenship},
+        $candidat->{marital_status},
+        $candidat->{children},
+        $candidat->{phone_number},
+        $candidat->{email},
+        $candidat->{position_apply},
+        $candidat->{expertise_areas},
+        $candidat->{prof_exp},
+        $candidat->{foreign_lang},
+        $candidat->{education},
+        $candidat->{cv},
+        $candidat->{status},
+        $candidat->{registration_date} ) = (@row);
+
+        $sth->finish();
+        return $candidat;
 }
 sub update_by_id{
 	
