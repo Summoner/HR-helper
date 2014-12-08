@@ -132,7 +132,7 @@ sub update_by_id{
                             status = ?,
                             registration_date = ?
 							WHERE id= ?");
-
+# Check formatting (set up automatic transform tab to spaces)
 $sth->execute($candidat->forename,
 			$candidat->surname,
 			$candidat->age,
