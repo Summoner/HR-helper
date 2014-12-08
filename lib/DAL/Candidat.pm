@@ -278,54 +278,55 @@ sub get_list_candidates_by_status{
 sub get_list_candidates_by_registration_date{
 	
     my ($self,$date_from,$date_to) = @_;
-	my $candidates = [];	
+    my $candidates = [];	
 	 	
-	my $sth = $dbh->prepare("SELECT
-							id,
-							forename,
-							surname,
-							age,
-							citizenship,
-							marital_status,
-							children,
-							phone_number,
-							email,
-							position_apply,
-							expertise_areas,
-							prof_exp,
-							foreign_lang,
-							education,
-                            cv,
-                            status,
-                            registration_date
-                            FROM Candidat 
-                            WHERE registration_date between ? and ?");
-	$sth->execute( $date_from,$date_to )|| die $log->error("$DBI::errstr");
+    my $sth = $dbh->prepare("SELECT
+                                id,
+                                forename,
+                                surname,
+                                age,
+                                citizenship,
+                                marital_status,
+                                children,
+                                phone_number,
+                                email,
+                                position_apply,
+                                expertise_areas,
+                                prof_exp,
+                                foreign_lang,
+                                education,
+                                cv,
+                                status,
+                                registration_date
+                                FROM Candidat 
+                                WHERE registration_date between ? and ?");
+    $sth->execute( $date_from,$date_to )|| die $log->error("$DBI::errstr");
 		
-	while (my @row = $sth->fetchrow_array()) {
-			my $candidat = lib::Entities::Candidat->new();
+    while (my @row = $sth->fetchrow_array()) {
 
-   		  ( $candidat->{id},
-			$candidat->{forename},
-			$candidat->{surname},
-			$candidat->{age},
-			$candidat->{citizenship},
-			$candidat->{marital_status},
-			$candidat->{children},
-			$candidat->{phone_number},
-			$candidat->{email},
-			$candidat->{position_apply},
-			$candidat->{expertise_areas},
-			$candidat->{prof_exp},
-			$candidat->{foreign_lang},
-			$candidat->{education},
-            $candidat->{cv},
-            $candidat->{status},
-            $candidat->{registration_date} ) = (@row);
+    my $candidat = lib::Entities::Candidat->new();
 
-			push @$candidates,$candidat;
+      ( $candidat->{id},
+        $candidat->{forename},
+        $candidat->{surname},
+        $candidat->{age},
+        $candidat->{citizenship},
+        $candidat->{marital_status},
+        $candidat->{children},
+        $candidat->{phone_number},
+        $candidat->{email},
+        $candidat->{position_apply},
+        $candidat->{expertise_areas},
+        $candidat->{prof_exp},
+        $candidat->{foreign_lang},
+        $candidat->{education},
+        $candidat->{cv},
+        $candidat->{status},
+        $candidat->{registration_date} ) = (@row);
+
+        push @$candidates,$candidat;
     }
-	$sth->finish();
-	return $candidates;
+    $sth->finish();
+    return $candidates;
 }
 1;
