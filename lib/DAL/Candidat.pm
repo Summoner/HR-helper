@@ -13,46 +13,46 @@ my $dbh = lib::DB->instance();
 
 sub add{
 
-	my ($self,$candidat) = @_;	
+    my ($self,$candidat) = @_;	
 	
-	my $sth = $dbh->prepare("INSERT INTO Candidat
-                       (forename, 
-						surname,
-						age,
-						citizenship,
-						marital_status,
-						children,
-						phone_number,
-						email,
-						position_apply,
-						expertise_areas,
-						prof_exp,
-						foreign_lang,
-						education,
-                        cv,
-                        status,
-                        registration_date)
-                        values
-                       (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-	$sth->execute($candidat->forename,
-					$candidat->surname,
-					$candidat->age,
-					$candidat->citizenship,
-					$candidat->marital_status,
-					$candidat->children,
-					$candidat->phone_number,
-					$candidat->email,
-					$candidat->position_apply,
-					$candidat->expertise_areas,
-					$candidat->prof_exp,
-					$candidat->foreign_lang,
-					$candidat->education,
-                   	$candidat->cv,
-                	$candidat->status, 
-                    $candidat->registration_date ) || die $log->error("$DBI::errstr");
-	
-	$log->info("Added 1 candidat");
-	$sth->finish();
+    my $sth = $dbh->prepare("INSERT INTO Candidat
+                                        (forename, 
+                                        surname,
+                                        age,
+                                        citizenship,
+                                        marital_status,
+                                        children,
+                                        phone_number,
+                                        email,
+                                        position_apply,
+                                        expertise_areas,
+                                        prof_exp,
+                                        foreign_lang,
+                                        education,
+                                        cv,
+                                        status,
+                                        registration_date)
+                                        values
+                                        (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+       $sth->execute($candidat->forename,
+                     $candidat->surname,
+                     $candidat->age,
+                     $candidat->citizenship,
+                     $candidat->marital_status,
+                     $candidat->children,
+                     $candidat->phone_number,
+                     $candidat->email,
+                     $candidat->position_apply,
+                     $candidat->expertise_areas,
+                     $candidat->prof_exp,
+                     $candidat->foreign_lang,
+                     $candidat->education,
+                     $candidat->cv,
+                     $candidat->status, 
+                     $candidat->registration_date ) || die $log->error("$DBI::errstr");
+
+        $log->info("Added 1 candidat");
+        $sth->finish();
 }
 
 sub get_by_id{
