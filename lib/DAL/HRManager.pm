@@ -12,109 +12,116 @@ my $dbh = lib::DB->instance();
 
 
 sub add{
+    my ($self,$hrmanager) = @_;		
+	
+    my $sth = $dbh->prepare( "INSERT INTO HRManager
+                                (forename, 
+                                surname,
+                                phone_number,
+                                email)
+                                values
+                                (?,?,?,?)" );
 
-	my ($self,$hrmanager) = @_;		
+        $sth->execute(  $hrmanager->forename,
+                        $hrmanager->surname,
+                        $hrmanager->phone_number,
+                        $hrmanager->email ) || die $log->error("$DBI::errstr");
 	
-	my $sth = $dbh->prepare("INSERT INTO HRManager
-                       (forename, 
-						surname,
-						phone_number,
-						email )
-                        values
-                       (?,?,?,?)");
-	$sth->execute($hrmanager->forename,
-					$hrmanager->surname,
-					$hrmanager->phone_number,
-					$hrmanager->email
-	) || die $log->error("$DBI::errstr");
-	
-	$log->info("Added 1 HRmanager");
-	$sth->finish();
+        $log->info("Added 1 HRmanager");
+        $sth->finish();
 
 }
 
 sub get_by_id{
 
-	my ($self,$id) = @_;
+    my ($self,$id) = @_;
 		
-	my $sth = $dbh->prepare("SELECT
-                            id,
-							forename,
-							surname,
-							phone_number,
-							email FROM HRManager WHERE id=?");
-	$sth->execute( $id )|| die $log->error("$DBI::errstr");
+    my $sth = $dbh->prepare( "SELECT
+                                id,
+                                forename,
+                                surname,
+                                phone_number,
+                                email FROM HRManager WHERE id=?" );
 
-	if ($sth->rows >1 || $sth->rows == 0){
+        $sth->execute( $id )|| die $log->error("$DBI::errstr");
+
+        if ($sth->rows >1 || $sth->rows == 0){
 		
-		$log->info("We have " . $sth->rows . " HRManagers with id: $id");
-		return;
-	}
+            $log->info("We have " . $sth->rows . " HRManagers with id: $id");
+        }
 	
-	my @row = $sth->fetchrow_array();
-	my $hrmanager = lib::Entities::HRManager->new();   	
-   		  ( $hrmanager->{id},
+        my @row = $sth->fetchrow_array();
+        my $hrmanager = lib::Entities::HRManager->new();
+
+          ( $hrmanager->{id},
             $hrmanager->{forename},
-			$hrmanager->{surname},
-			$hrmanager->{phone_number},
-			$hrmanager->{email} ) = (@row);
-	$sth->finish();
-	return $hrmanager;
+            $hrmanager->{surname},
+            $hrmanager->{phone_number},
+            $hrmanager->{email} ) = (@row);
+
+            $sth->finish();
+    return $hrmanager;
 }
+
 sub update_by_id{
 	
-	my ($self,$id,$hrmanager) = @_;	
+    my ($self,$id,$hrmanager) = @_;	
 	
-	my $sth = $dbh->prepare("UPDATE HRManager
-                        	SET forename = ?,
-							surname = ?,
-							phone_number = ?,
-							email = ?
-							WHERE id= ?");
+    my $sth = $dbh->prepare( "UPDATE HRManager
+                                SET forename = ?,
+                                surname = ?,
+                                phone_number = ?,
+                                email = ?
+                                WHERE id= ?" );
 
-$sth->execute($hrmanager->forename,
-			$hrmanager->surname,
-			$hrmanager->phone_number,
-			$hrmanager->email,
-			$id ) || die $log->error("$DBI::errstr");
+        $sth->execute(  $hrmanager->forename,
+                        $hrmanager->surname,
+                        $hrmanager->phone_number,
+                        $hrmanager->email,
+                        $id ) || die $log->error("$DBI::errstr");
 		
-		$log->info("We have " . $sth->rows . " HRManagers updated with id: $id");
-		$sth->finish();
+        $log->info("We have " . $sth->rows . " HRManagers updated with id: $id");
+        $sth->finish();
 }
+
 sub delete_by_id{
 	
-	my ($self,$id) = @_;
+    my ($self,$id) = @_;
 		
-	my $sth = $dbh->prepare("DELETE FROM HRManager WHERE id = ?");
-	$sth->execute( $id ) || die $log->error("$DBI::errstr");
+    my $sth = $dbh->prepare("DELETE FROM HRManager WHERE id = ?");
+       $sth->execute( $id ) || die $log->error("$DBI::errstr");
 	
-	$log->info("Deleted: " . $sth->rows . " HRManagers with id: $id");
-	$sth->finish();
+        $log->info("Deleted: " . $sth->rows . " HRManagers with id: $id");
+        $sth->finish();
 }
 
 sub get_list{
 
-	my $self = shift;	
-	my $hrmanagers = [];	
+    my $self = shift;	
+    my $hrmanagers = [];	
  	
-	my $sth = $dbh->prepare("SELECT
-							id,
-							forename,
-							surname,
-							phone_number,
-							email FROM HRManager");
-	$sth->execute() || die $log->error("$DBI::errstr");
+    my $sth = $dbh->prepare( "SELECT
+                                id,
+                                forename,
+                                surname,
+                                phone_number,
+                                email FROM HRManager" );
+
+    $sth->execute() || die $log->error("$DBI::errstr");
 		
-	while (my @row = $sth->fetchrow_array()) {
-			my $hrmanager = lib::Entities::HRManager->new();   	
-   		   ($hrmanager->{id},
-			$hrmanager->{forename},
-			$hrmanager->{surname},
-			$hrmanager->{phone_number},
-			$hrmanager->{email} ) = (@row);
-			push @$hrmanagers,$hrmanager;
+    while (my @row = $sth->fetchrow_array()) {
+
+        my $hrmanager = lib::Entities::HRManager->new();
+
+        ( $hrmanager->{id},
+          $hrmanager->{forename},
+          $hrmanager->{surname},
+          $hrmanager->{phone_number},
+          $hrmanager->{email} ) = (@row);
+          push @$hrmanagers,$hrmanager;
     }
-	$sth->finish();
-	return $hrmanagers;
+
+    $sth->finish();
+    return $hrmanagers;
 }
 1;
