@@ -1,21 +1,27 @@
 package lib::DAL::Interviewer;
 use strict;
 use warnings;
-use Data::Dumper; 
+use Data::Dumper;
 use lib::DB;
 use lib::Entities::Interviewer;
 use base 'lib::DAL';
+use base 'Class::Singleton';
 use Log::Log4perl;
 
 my $log = Log::Log4perl->get_logger(__PACKAGE__);
 my $dbh = lib::DB->instance();
 
+sub _new_instance{
+    my $class = shift;
+    my $self = bless {},$class;
+}
+
 sub add{
 
-    my ($self,$interviewer) = @_;		
+    my ($self,$interviewer) = @_;
 
     my $sth = $dbh->prepare( "INSERT INTO Interviewer
-                              ( forename, 
+                              ( forename,
                                 surname,
                                 phone_number,
                                 email )
@@ -25,7 +31,7 @@ sub add{
                         $interviewer->surname,
                         $interviewer->phone_number,
                         $interviewer->email ) || die $log->error("$DBI::errstr");
-	
+
         $log->info("Added 1 Interviewer");
         $sth->finish();
 }
@@ -34,7 +40,7 @@ sub get_by_id{
 
     my ( $self,$id ) = @_;
 
-    my $sth = $dbh->prepare("SELECT 
+    my $sth = $dbh->prepare("SELECT
                             id,
                             forename,
                             surname,
@@ -47,7 +53,7 @@ sub get_by_id{
 
             $log->info("We have " . $sth->rows . " Interviewers with id: $id");
 }
-	
+
     my @row = $sth->fetchrow_array();
     my $interviewer = lib::Entities::Interviewer->new();
 
@@ -62,9 +68,9 @@ sub get_by_id{
 }
 
 sub update_by_id{
-	
+
     my ($self,$id,$interviewer) = @_;
-		
+
     my $sth = $dbh->prepare( "UPDATE Interviewer
                                 SET forename = ?,
                                 surname = ?,
@@ -83,9 +89,9 @@ sub update_by_id{
 }
 
 sub delete_by_id{
-	
+
     my ($self,$id) = @_;
-		
+
     my $sth = $dbh->prepare("DELETE FROM Interviewer WHERE id = ?");
 
         $sth->execute( $id ) || die $log->error("$DBI::errstr");
@@ -96,8 +102,8 @@ sub delete_by_id{
 sub get_list{
 
     my $self = shift;
-    my $interviewers = [];	
-	
+    my $interviewers = [];
+
     my $sth = $dbh->prepare("SELECT
                                 id,
                                 forename,
@@ -108,7 +114,7 @@ sub get_list{
 
         while (my @row = $sth->fetchrow_array()) {
 
-            my $interviewer = lib::Entities::Interviewer->new(); 
+            my $interviewer = lib::Entities::Interviewer->new();
 
           ( $interviewer->{id},
             $interviewer->{forename},

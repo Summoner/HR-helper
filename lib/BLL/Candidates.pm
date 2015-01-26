@@ -1,13 +1,15 @@
 package lib::BLL::Candidates;
 use strict;
 use warnings;
-use Data::Dumper; 
+use Data::Dumper;
 use lib::DAL::Candidat;
 use Log::Log4perl;
+use base 'lib::BLL';
+use base 'Class::Singleton';
 
 my $log = Log::Log4perl->get_logger(__PACKAGE__);
+my $candidates = lib::DAL::Candidat->instance();
 
-use base 'lib::BLL';
 
 #Candidates can have status:
 # 0 - Just applayed;
@@ -27,21 +29,24 @@ use base 'lib::BLL';
 # 14 - Offer accepted
 # 15 - Offer rejected
 
+sub _new_instance{
+    my $class = shift;
+    my $self = bless {},$class;
+}
+
 sub add{
 
-	my $self = shift;	
+	my $self = shift;
 	my $candidat = lib::Entities::Candidat->new(@_);
 	if (defined $candidat){
-		my $candidates = lib::DAL::Candidat->new();
 		$candidates->add($candidat);
 	}
 }
 
 sub get_by_id{
 
-    my ($self,$id) = @_;	
+    my ($self,$id) = @_;
 
-	my $candidates = lib::DAL::Candidat->new();
 	my $candidat = $candidates->get_by_id($id);
 	return $candidat
 }
@@ -49,11 +54,11 @@ sub get_by_id{
 sub update_by_id{
 
     my $self = shift;
-    my $id = shift;	
-		
+    my $id = shift;
+
 	my $candidat = lib::Entities::Candidat->new(@_);
 		if (defined $candidat){
-			my $candidates = lib::DAL::Candidat->new();
+
 			$candidates->update_by_id($id,$candidat);
 		}
 }
@@ -61,34 +66,33 @@ sub update_by_id{
 
 sub delete_by_id{
 
-	my ($self,$id) = @_;	
-	
-	my $candidat = lib::DAL::Candidat->new();
-	$candidat->delete_by_id($id);
+	my ($self,$id) = @_;
+
+	$candidates->delete_by_id($id);
 }
 
 sub get_list{
 
-	my $self = shift;	
-	my $candidat = lib::DAL::Candidat->new();
-	my $candidates_list = $candidat->get_list();
+	my $self = shift;
+
+	my $candidates_list = $candidates->get_list();
 	return $candidates_list;
 }
 
 sub get_list_candidates_by_status {
     my	($self, $status )	= @_;
-    my $candidat = lib::DAL::Candidat->new();
-	my $candidates_list = $candidat->get_list_candidates_by_status($status);
+
+	my $candidates_list = $candidates->get_list_candidates_by_status($status);
     return $candidates_list;
-    
+
 } ## --- end sub get_list_candidates_by_status
 
 sub get_list_candidates_by_registration_date {
     my	($self, $date_from,$date_to )	= @_;
-    my $candidat = lib::DAL::Candidat->new();
-	my $candidates_list = $candidat->get_list_candidates_by_registration_date( $date_from,$date_to );
+
+	my $candidates_list = $candidates->get_list_candidates_by_registration_date( $date_from,$date_to );
 	return $candidates_list;
-    
+
 } ## --- end sub get_list_candidates_by_registration_date
 
 sub send_letter_to_candidat {
@@ -101,13 +105,9 @@ sub send_letter_to_candidat {
     print MAIL "To: $to\n";
     print MAIL "From: $from\n";
     print MAIL "Subject: $subject\n\n";
-
     print MAIL $message;
     close( MAIL );
-
     $log->info("Message sent successfully");
 
 } ## --- end sub send_letter_to_candidat
-
-
 1;

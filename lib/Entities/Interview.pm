@@ -1,7 +1,7 @@
 package lib::Entities::Interview;
 use strict;
 use warnings;
-use Data::Dumper;  
+use Data::Dumper;
 use lib::Entities::Validation;
 use lib::Entities::Interviewer;
 use lib::Entities::Candidat;
@@ -10,32 +10,28 @@ use Log::Log4perl;
 
 my $log = Log::Log4perl->get_logger(__PACKAGE__);
 
-sub new{	
-	my  $class = shift;
+sub new{
+    my  $class = shift;
     my $self = {};
-	my %params = @_;
-	bless($self,$class);
+    my %params = @_;
+    bless($self,$class);
 
-	return $self if (scalar keys %params == 0);
+    return $self if (scalar keys %params == 0);
 	# initialize all attributes by passing arguments to accessor methods.
-    		foreach my $attrib ( keys %params ) { 
-       
-            			unless ($self->can( $attrib )){			
-			   
-		       					$log->error("Invalid parameter '$attrib' passed to '$class' constructor");
-								$self = undef;
-								last;
-						}else{
+    foreach my $attrib ( keys %params ) {
 
-	        				$self->$attrib( $params{$attrib} );
-						}
+        unless ($self->can( $attrib )){
 
-			}   
-	
-return $self;
+            $log->error("Invalid parameter '$attrib' passed to '$class' constructor");
+            $self = undef;
+            last;
+		}else{
 
+            $self->$attrib( $params{$attrib} );
+		}
+	}
+    return $self;
 }
-
 
 #Object accessor methods
 sub id{$_[0]->{id} = $_[1] if defined $_[1]; $_[0]->{id} }
@@ -47,8 +43,6 @@ sub interviewer3{$_[0]->{interviewer3} = $_[1] if defined $_[1]; $_[0]->{intervi
 sub candidat{$_[0]->{candidat} = $_[1] if defined $_[1]; $_[0]->{candidat} }
 sub result{$_[0]->{result} = $_[1] if defined $_[1]; $_[0]->{result} }
 sub process_description{$_[0]->{process_description} = $_[1] if defined $_[1]; $_[0]->{process_description} }
-
-
 1;
 
 

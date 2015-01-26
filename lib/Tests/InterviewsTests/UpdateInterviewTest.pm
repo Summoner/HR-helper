@@ -1,7 +1,7 @@
 package lib::Tests::InterviewsTests::UpdateInterviewTest;
 use strict;
 use warnings;
-use Data::Dumper; 
+use Data::Dumper;
 
 
 #Test here
@@ -10,7 +10,7 @@ use lib::Portal;
 my %interview1 = (
 	date => "2014-09-28 19:52:50",
 	result => "",
-	process_description => ""	
+	process_description => ""
 );
 $interview1{candidat}->{id} = 6;
 $interview1{interviewer1}->{id} = 2;

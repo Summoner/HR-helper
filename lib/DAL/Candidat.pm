@@ -1,8 +1,9 @@
 package lib::DAL::Candidat;
 use strict;
 use warnings;
-use Data::Dumper; 
+use Data::Dumper;
 use base 'lib::DAL';
+use base 'Class::Singleton';
 use lib::Entities::Candidat;
 use lib::DB;
 use Log::Log4perl;
@@ -10,13 +11,17 @@ use Log::Log4perl;
 my $log = Log::Log4perl->get_logger(__PACKAGE__);
 my $dbh = lib::DB->instance();
 
+sub _new_instance{
+    my $class = shift;
+    my $self = bless {},$class;
+}
 
 sub add{
 
-    my ($self,$candidat) = @_;	
-	
+    my ($self,$candidat) = @_;
+
     my $sth = $dbh->prepare("INSERT INTO Candidat
-                                        (forename, 
+                                        (forename,
                                         surname,
                                         age,
                                         citizenship,
@@ -48,7 +53,7 @@ sub add{
                      $candidat->foreign_lang,
                      $candidat->education,
                      $candidat->cv,
-                     $candidat->status, 
+                     $candidat->status,
                      $candidat->registration_date ) || die $log->error("$DBI::errstr");
 
         $log->info("Added 1 candidat");
@@ -58,7 +63,7 @@ sub add{
 sub get_by_id{
 
     my ($self,$id) = @_;
-		
+
     my $sth = $dbh->prepare("SELECT
                                 id,
                                 forename,
@@ -82,13 +87,13 @@ sub get_by_id{
 
 
         if ($sth->rows >1 || $sth->rows == 0){
-		
-            $log->info("We have " . $sth->rows . " candidates with id: $id");            
+
+            $log->info("We have " . $sth->rows . " candidates with id: $id");
         }
-	
+
         my @row = $sth->fetchrow_array();
         my $candidat = lib::Entities::Candidat->new();
-    
+
       ( $candidat->{id},
         $candidat->{forename},
         $candidat->{surname},
@@ -111,8 +116,8 @@ sub get_by_id{
         return $candidat;
 }
 sub update_by_id{
-	
-    my ($self,$id,$candidat) = @_;	
+
+    my ($self,$id,$candidat) = @_;
 
     my $sth = $dbh->prepare("UPDATE Candidat
                                 SET forename = ?,
@@ -147,7 +152,7 @@ sub update_by_id{
                     $candidat->foreign_lang,
                     $candidat->education,
                     $candidat->cv,
-                    $candidat->status, 
+                    $candidat->status,
                     $candidat->registration_date,
                     $id )|| die $log->error("$DBI::errstr");
 
@@ -155,20 +160,20 @@ sub update_by_id{
     $sth->finish();
 }
 sub delete_by_id{
-	
+
     my ($self,$id) = @_;
-		
+
     my $sth = $dbh->prepare("DELETE FROM Candidat WHERE id = ?");
        $sth->execute( $id ) || die $log->error("$DBI::errstr");
-	
+
         $log->info("Deleted: " . $sth->rows . " candidates with id: $id");
         $sth->finish();
 }
 
 sub get_list{
-	
-    my $candidates = [];	
-	 	
+
+    my $candidates = [];
+
     my $sth = $dbh->prepare("SELECT
                                 id,
                                 forename,
@@ -189,7 +194,7 @@ sub get_list{
                                 registration_date
                                 FROM Candidat");
         $sth->execute()|| die $log->error("$DBI::errstr");
-		
+
         while (my @row = $sth->fetchrow_array()) {
 
             my $candidat = lib::Entities::Candidat->new();
@@ -219,10 +224,10 @@ sub get_list{
 }
 
 sub get_list_candidates_by_status{
-	
+
     my ($self,$status) = @_;
-    my $candidates = [];	
-	 	
+    my $candidates = [];
+
     my $sth = $dbh->prepare("SELECT
                                 id,
                                 forename,
@@ -241,11 +246,11 @@ sub get_list_candidates_by_status{
                                 cv,
                                 status,
                                 registration_date
-                                FROM Candidat 
+                                FROM Candidat
                                 WHERE status = ?");
 
        $sth->execute( $status )|| die $log->error("$DBI::errstr");
-		
+
        while ( my @row = $sth->fetchrow_array() ) {
 
             my $candidat = lib::Entities::Candidat->new();
@@ -271,15 +276,15 @@ sub get_list_candidates_by_status{
             push @$candidates,$candidat;
        }
     $sth->finish();
-    
+
     return $candidates;
 }
 
 sub get_list_candidates_by_registration_date{
-	
+
     my ($self,$date_from,$date_to) = @_;
-    my $candidates = [];	
-	 	
+    my $candidates = [];
+
     my $sth = $dbh->prepare("SELECT
                                 id,
                                 forename,
@@ -298,10 +303,10 @@ sub get_list_candidates_by_registration_date{
                                 cv,
                                 status,
                                 registration_date
-                                FROM Candidat 
+                                FROM Candidat
                                 WHERE registration_date between ? and ?");
     $sth->execute( $date_from,$date_to )|| die $log->error("$DBI::errstr");
-		
+
     while (my @row = $sth->fetchrow_array()) {
 
     my $candidat = lib::Entities::Candidat->new();

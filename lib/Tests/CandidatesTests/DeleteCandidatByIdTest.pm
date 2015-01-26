@@ -1,7 +1,7 @@
 package lib::Tests::CandidatesTests::DeleteCandidatTest;
 use strict;
 use warnings;
-use Data::Dumper; 
+use Data::Dumper;
 #Test here
 use lib::Portal;
 

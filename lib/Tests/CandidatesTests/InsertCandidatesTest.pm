@@ -1,7 +1,7 @@
 package lib::Tests::CandidatesTests::InsertCandidatesTest;
 use strict;
 use warnings;
-use Data::Dumper; 
+use Data::Dumper;
 
 
 #Test here

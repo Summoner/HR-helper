@@ -1,7 +1,7 @@
 package lib::Tests::HRManagersTests::InsertHRmanagersTest;
 use strict;
 use warnings;
-use Data::Dumper; 
+use Data::Dumper;
 
 
 #Test here
@@ -11,7 +11,7 @@ my %hrmanager1 = (
 	forename => "Anna",
 	surname => "Ivanova",
 	phone_number => "375297559171",
-	email => "ivanova\@gmail.com"	
+	email => "ivanova\@gmail.com"
 );
 my %hrmanager2 = (
 	forename => "Elena",
@@ -24,7 +24,7 @@ my %hrmanager3 = (
 	forename => "Eugenia",
 	surname => "Svetlova",
 	phone_number => "375297639171",
-	email => "svetlova\@gmail.com"	
+	email => "svetlova\@gmail.com"
 
 );
 my $p = lib::Portal->new();

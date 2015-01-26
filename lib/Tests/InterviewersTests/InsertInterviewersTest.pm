@@ -1,7 +1,7 @@
 package lib::Tests::InterviewersTests::InsertInterviewersTest;
 use strict;
 use warnings;
-use Data::Dumper; 
+use Data::Dumper;
 
 
 #Test here
@@ -11,7 +11,7 @@ my %interviewer1 = (
 	forename => "John",
 	surname => "Smit",
 	phone_number => "375297559173",
-	email => "smit\@gmail.com"	
+	email => "smit\@gmail.com"
 );
 my %interviewer2 = (
 	forename => "David",
